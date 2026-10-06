@@ -2739,10 +2739,31 @@ def batch_chat_room(batch):
 # INITIALIZE DATABASE
 # =========================================================
 
-# This must run when Flask starts,
-# including when deployed with Gunicorn on Render.
+print("========== DATABASE STARTUP CHECK ==========")
+
+db_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "database.db"
+)
+
+print("DATABASE PATH:", db_path)
+print("DATABASE EXISTS BEFORE INIT:", os.path.exists(db_path))
+
 init_db()
 
+print("DATABASE EXISTS AFTER INIT:", os.path.exists(db_path))
+
+conn = sqlite3.connect(db_path)
+
+tables = conn.execute(
+    "SELECT name FROM sqlite_master WHERE type='table'"
+).fetchall()
+
+print("DATABASE TABLES:", tables)
+
+conn.close()
+
+print("========== DATABASE STARTUP COMPLETE ==========")
 
 # =========================================================
 # START APP
