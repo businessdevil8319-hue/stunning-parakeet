@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | Campus Mate</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-animation"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            🏫 Campus Mate
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+                🏠 Home
+            </a>
+
+            <a href="/announcements">
+                📢 Announcements
+            </a>
+
+            <a href="/events">
+                📅 Events
+            </a>
+
+            <a href="/resources">
+                📚 Resources
+            </a>
+
+            <a href="/teammates">
+                👥 Find Teammates
+            </a>
+
+            <a href="/assistant">
+                🤖 Campus Assistant
+            </a>
+
+            <a href="/campus-info">
+                📍 Campus Info
+            </a>
+
+            <a href="/profile" class="active">
+                👤 My Profile
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <div class="search-box">
+                🔎 Search Campus Mate...
+            </div>
+
+            <a href="/profile" class="student-profile">
+                👨‍🎓 {{ student[1] }}
+            </a>
+
+        </header>
+
+
+        <!-- Profile Hero -->
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    👋 Welcome to your profile
+                </p>
+
+                <h1>
+                    Student <span>Profile</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    View your Campus Mate account information.
+                </p>
+
+            </div>
+
+            <div class="hero-decoration">
+                👤
+            </div>
+
+        </section>
+
+
+        <!-- Profile Card -->
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    👤 My Details
+                </h2>
+
+                <p>
+                    Your registered student information
+                </p>
+
+            </div>
+
+
+            <div class="profile-container">
+
+                <div class="profile-avatar">
+                    👨‍🎓
+                </div>
+
+
+                <div class="profile-details">
+
+                    <div class="profile-detail">
+                        <span>👤 Full Name</span>
+                        <strong>{{ student[1] }}</strong>
+                    </div>
+
+                    <div class="profile-detail">
+                        <span>📧 College Email</span>
+                        <strong>{{ student[2] }}</strong>
+                    </div>
+
+                    <div class="profile-detail">
+                        <span>🎓 Branch</span>
+                        <strong>{{ student[4] }}</strong>
+                    </div>
+
+                    <div class="profile-detail">
+                        <span>📅 Year</span>
+                        <strong>{{ student[5] }}</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="profile-actions">
+
+    <a href="/logout" class="logout-button">
+        🚪 Logout
+    </a>
+
+</div>
+
+
+        <footer class="dashboard-footer">
+            © 2026 Campus Mate | Built by CodeCrafters 🚀
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

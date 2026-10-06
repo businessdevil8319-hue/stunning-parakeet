@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Info | Campus Mate</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-animation"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            🏫 Campus Mate
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">🏠 Home</a>
+            <a href="/announcements">📢 Announcements</a>
+            <a href="/events">📅 Events</a>
+            <a href="/resources">📚 Resources</a>
+            <a href="/teammates">👥 Find Teammates</a>
+            <a href="/assistant">🤖 Campus Assistant</a>
+            <a href="/campus-info" class="active">📍 Campus Info</a>
+            <a href="/login">🔐 Login</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <div class="search-box">
+                🔎 Search Campus Mate...
+            </div>
+
+            <div class="student-profile">
+                👨‍🎓 Student
+            </div>
+
+        </header>
+
+
+        <!-- Hero -->
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    📍 Explore Your Campus
+                </p>
+
+                <h1>
+                    Campus <span>Information</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Find important places and services available on your campus.
+                </p>
+
+            </div>
+
+            <div class="hero-decoration">
+                🏫
+            </div>
+
+        </section>
+
+
+        <!-- Campus Information -->
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    🗺️ Important Places
+                </h2>
+
+                <p>
+                    Everything you need to know about your campus.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <!-- Library -->
+                <div class="feature-card card-purple">
+
+                    <div class="feature-icon">
+                        📚
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>Library</h3>
+
+                        <p>
+                            Find books, study spaces and academic resources.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Cafeteria -->
+                <div class="feature-card card-orange">
+
+                    <div class="feature-icon">
+                        🍴
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>Cafeteria</h3>
+
+                        <p>
+                            Information about campus food and cafeteria timings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Medical Center -->
+                <div class="feature-card card-green">
+
+                    <div class="feature-icon">
+                        🏥
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>Medical Center</h3>
+
+                        <p>
+                            Find basic medical assistance available on campus.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Administration -->
+                <div class="feature-card card-blue">
+
+                    <div class="feature-icon">
+                        🏢
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>Administration</h3>
+
+                        <p>
+                            Find information about important administrative offices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            © 2026 Campus Mate | Built by CodeCrafters 🚀
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Select Course | Lecturer | Campus Mate
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #07111f;
+            color: white;
+        }
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            background: #0b1728;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #5ee7ff;
+        }
+
+        .logout {
+            text-decoration: none;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 25px;
+        }
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                #102744,
+                #142d4d
+            );
+
+            border-radius: 24px;
+
+            padding: 40px;
+
+            margin-bottom: 30px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 20px;
+
+            background: rgba(94,231,255,0.12);
+
+            color: #5ee7ff;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.70);
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .course-card {
+            background: #0d1b2d;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            transition: 0.25s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(94,231,255,0.35);
+        }
+
+        .course-icon {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: rgba(94,231,255,0.10);
+
+            font-size: 26px;
+
+            margin-bottom: 18px;
+        }
+
+        .course-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .select-button {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #5ee7ff;
+
+            color: #06101c;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            font-weight: 800;
+
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .hero {
+                padding: 28px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="navbar">
+
+        <div class="logo">
+            Campus <span>Mate</span>
+        </div>
+
+        <a
+            href="/logout"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <section class="hero">
+
+            <div class="badge">
+                👨‍🏫 LECTURER MODE
+            </div>
+
+            <h1>
+                Select Your Course
+            </h1>
+
+            <p>
+                Choose the course you want to manage before
+                entering your lecturer dashboard.
+            </p>
+
+        </section>
+
+
+        <h2 class="section-title">
+            Available Courses
+        </h2>
+
+
+        <div class="course-grid">
+
+
+            <!-- PYTHON -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🐍
+                </div>
+
+                <h2>
+                    Python
+                </h2>
+
+                <p>
+                    Manage Python classes, assignments
+                    and practice materials.
+                </p>
+
+                <a
+                    href="/lecturer/select-course/python"
+                    class="select-button"
+                >
+                    Select Course
+                </a>
+
+            </div>
+
+
+            <!-- FOUNDATION OF ENGINEERING -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    ⚙️
+                </div>
+
+                <h2>
+                    Foundation of Engineering
+                </h2>
+
+                <p>
+                    Manage Foundation of Engineering
+                    study materials.
+                </p>
+
+                <a
+                    href="/lecturer/select-course/foundation-of-engineering"
+                    class="select-button"
+                >
+                    Select Course
+                </a>
+
+            </div>
+
+
+            <!-- CALCULUS -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    📐
+                </div>
+
+                <h2>
+                    Calculus
+                </h2>
+
+                <p>
+                    Manage Calculus classes, assignments
+                    and practice sheets.
+                </p>
+
+                <a
+                    href="/lecturer/select-course/calculus"
+                    class="select-button"
+                >
+                    Select Course
+                </a>
+
+            </div>
+
+
+            <!-- COMPUTATIONAL CHEMISTRY -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🧪
+                </div>
+
+                <h2>
+                    Computational Chemistry
+                </h2>
+
+                <p>
+                    Manage Computational Chemistry
+                    learning materials.
+                </p>
+
+                <a
+                    href="/lecturer/select-course/computational-chemistry"
+                    class="select-button"
+                >
+                    Select Course
+                </a>
+
+            </div>
+
+
+            <!-- TPSE -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    💻
+                </div>
+
+                <h2>
+                    TPSE
+                </h2>
+
+                <p>
+                    Manage TPSE classes, assignments
+                    and practice materials.
+                </p>
+
+                <a
+                    href="/lecturer/select-course/tpse"
+                    class="select-button"
+                >
+                    Select Course
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

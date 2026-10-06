@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ batch_name }} | Campus Mate</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            height: 100vh;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            background: #111936;
+        }
+
+        /* HEADER */
+
+        .chat-header {
+            padding: 18px 22px;
+            background: #171f43;
+            border-bottom: 1px solid #303b6b;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-button {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .group-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #6675f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .chat-header h2 {
+            margin: 0;
+            font-size: 19px;
+        }
+
+        .chat-header p {
+            margin: 4px 0 0;
+            color: #aeb8dc;
+            font-size: 13px;
+        }
+
+        /* MESSAGES */
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #18234b,
+                    transparent 40%
+                ),
+                #0b1020;
+        }
+
+        .message {
+            margin-bottom: 18px;
+            max-width: 75%;
+        }
+
+        .message-name {
+            font-size: 12px;
+            color: #8e9cff;
+            margin-bottom: 5px;
+        }
+
+        .message-box {
+            display: inline-block;
+            background: #1a2448;
+            padding: 11px 15px;
+            border-radius: 14px;
+            border-top-left-radius: 4px;
+        }
+
+        .message-text {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: white !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    word-wrap: break-word;
+}
+
+        .message-time {
+            margin-top: 5px;
+            font-size: 10px;
+            color: #7f89aa;
+        }
+
+        .empty-chat {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #8d98bd;
+        }
+
+        .empty-chat div {
+            max-width: 350px;
+        }
+
+        .empty-chat .big-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        /* MESSAGE INPUT */
+
+        .message-form {
+            padding: 15px;
+            background: #171f43;
+            border-top: 1px solid #303b6b;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-form input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: #0d1430;
+            color: white;
+            padding: 14px 16px;
+            border-radius: 25px;
+            font-size: 15px;
+        }
+
+        .message-form input::placeholder {
+            color: #7f89aa;
+        }
+
+        .message-form button {
+            border: none;
+            background: #6675f5;
+            color: white;
+            padding: 0 22px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .message-form button:hover {
+            background: #7b88ff;
+        }
+
+        @media (max-width: 600px) {
+
+            .message {
+                max-width: 88%;
+            }
+
+            .messages {
+                padding: 18px;
+            }
+
+            .message-form {
+                padding: 10px;
+            }
+
+            .message-form button {
+                padding: 0 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+
+    <div class="chat-header">
+
+        <a href="/batch-chat" class="back-button">
+            ←
+        </a>
+
+        <div class="group-icon">
+            💬
+        </div>
+
+        <div>
+            <h2>{{ batch_name }}</h2>
+            <p>Campus Mate Group Chat</p>
+        </div>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+
+    <div class="messages" id="messages">
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message
+    {% if message[3] == session.get('name') %}
+        my-message
+    {% endif %}
+">
+
+    <div class="message-name">
+        {{ message[3] }}
+
+        {% if message[4] == "lecturer" %}
+            👨‍🏫 Lecturer
+        {% endif %}
+    </div>
+
+    <div class="message-box">
+        <p class="message-text">
+            {{ message[1] }}
+        </p>
+    </div>
+
+    <div class="message-time">
+        {{ message[2] }}
+    </div>
+
+</div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-chat">
+
+                <div>
+
+                    <div class="big-icon">
+                        💬
+                    </div>
+
+                    <h2>
+                        No messages yet
+                    </h2>
+
+                    <p>
+                        Start the conversation with your
+                        batchmates and lecturer.
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- MESSAGE INPUT -->
+
+    <form
+        class="message-form"
+        method="POST"
+        action="/batch-chat/{{ batch }}"
+    >
+
+        <input
+            type="text"
+            name="message"
+            placeholder="Type a message..."
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit">
+            Send
+        </button>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    // Automatically scroll to the newest message
+
+    const messages = document.getElementById("messages");
+
+    if (messages) {
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+</script>
+
+</body>
+</html>

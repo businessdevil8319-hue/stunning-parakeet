@@ -1,0 +1,162 @@
+\<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Campus Mate</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="login-background">
+
+        <div class="login-glow glow-one"></div>
+        <div class="login-glow glow-two"></div>
+        <div class="login-glow glow-three"></div>
+
+    </div>
+
+
+    <main class="premium-login-page">
+
+        <!-- Left Side -->
+        <section class="login-intro">
+
+            <div class="brand-logo">
+                🏫
+            </div>
+
+            <p class="brand-small">
+                WELCOME TO
+            </p>
+
+            <h1>
+                Campus <span>Mate</span>
+            </h1>
+
+            <p class="intro-text">
+                Your college. Your community.
+                Your campus companion.
+            </p>
+
+
+            <div class="login-features">
+
+                <div class="login-feature">
+                    <div>📢</div>
+                    <span>Stay updated with campus announcements</span>
+                </div>
+
+                <div class="login-feature">
+                    <div>👥</div>
+                    <span>Connect with students and find teammates</span>
+                </div>
+
+                <div class="login-feature">
+                    <div>📚</div>
+                    <span>Access useful study resources</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Login Card -->
+        <section class="premium-login-card">
+
+            <div class="login-card-header">
+
+                <div class="login-icon">
+                    🔐
+                </div>
+
+                <h2>
+                    Welcome Back
+                </h2>
+
+                <p>
+                    Login to your Campus Mate account
+                </p>
+
+            </div>
+
+
+            <!-- Student Login Form -->
+            <form method="POST" action="/login" class="premium-login-form">
+
+                <div class="input-group">
+
+                    <label for="email">
+                        📧 College Email
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="Enter your college email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="password">
+                        🔑 Password
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="premium-login-button">
+
+                    Login to Campus Mate
+                    <span>→</span>
+
+                </button>
+
+            </form>
+
+
+            <div class="login-divider">
+                <span>OR</span>
+            </div>
+
+
+            <p class="create-account">
+
+                New to Campus Mate?
+
+                <a href="/register">
+                    Create Account
+                </a>
+
+            </p>
+
+
+            <a href="/" class="back-home">
+                ← Back to Home
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

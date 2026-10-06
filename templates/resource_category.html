@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ category_name }} | {{ course_name }} | Campus Mate
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <style>
+
+        .page-intro {
+            margin-top: 24px;
+            padding: 22px 24px;
+            border-radius: 18px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(124, 92, 246, 0.12),
+                rgba(62, 137, 255, 0.06)
+            );
+
+            border:
+                1px solid
+                rgba(124, 92, 246, 0.20);
+        }
+
+
+        .page-intro h3 {
+            margin: 0 0 8px;
+            color: white;
+            font-size: 17px;
+        }
+
+
+        .page-intro p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,0.62);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .back-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 17px;
+
+            color: #9b87ff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .back-link:hover {
+            color: #b3a5ff;
+        }
+
+
+        .resource-heading {
+            margin-top: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .resource-heading h2 {
+            margin: 0;
+
+            color: white;
+
+            font-size: 22px;
+        }
+
+
+        .resource-count {
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(124,92,246,0.12);
+
+            color: #a999ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .resource-list {
+            display: grid;
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+
+        .resource-card {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            transition: 0.25s ease;
+        }
+
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+
+            background:
+                rgba(124,92,246,0.05);
+
+            border-color:
+                rgba(124,92,246,0.25);
+        }
+
+
+        .resource-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            min-width: 0;
+        }
+
+
+        .file-icon {
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 14px;
+
+            background:
+                rgba(124,92,246,0.12);
+
+            border:
+                1px solid
+                rgba(124,92,246,0.16);
+
+            font-size: 23px;
+        }
+
+
+        .resource-info {
+            min-width: 0;
+        }
+
+
+        .resource-info h3 {
+            margin: 0 0 6px;
+
+            color: white;
+
+            font-size: 15px;
+
+            line-height: 1.4;
+
+            word-break: break-word;
+        }
+
+
+        .resource-info p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,0.48);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        .open-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(124,92,246,0.14);
+
+            color: #b0a2ff;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            border:
+                1px solid
+                rgba(124,92,246,0.20);
+        }
+
+
+        .open-button:hover {
+            background:
+                rgba(124,92,246,0.22);
+        }
+
+
+        .empty-state {
+            margin-top: 20px;
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.03);
+
+            border:
+                1px dashed
+                rgba(255,255,255,0.12);
+        }
+
+
+        .empty-icon {
+            font-size: 42px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .empty-state h3 {
+            margin: 0 0 8px;
+
+            color: white;
+
+            font-size: 18px;
+        }
+
+
+        .empty-state p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,0.50);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .resource-card {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .open-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background-animation"></div>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            🎓
+
+            <span>
+                Campus <b>Mate</b>
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+
+                🏠
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="/announcements">
+
+                📢
+                <span>Announcements</span>
+
+            </a>
+
+
+            <a href="/events">
+
+                📅
+                <span>Events</span>
+
+            </a>
+
+
+            <a
+                href="/resources"
+                class="active"
+            >
+
+                📚
+                <span>Study Resources</span>
+
+            </a>
+
+
+            <a href="/teammates">
+
+                👥
+                <span>Find Teammates</span>
+
+            </a>
+
+
+            <a href="/connections">
+
+                🤝
+                <span>My Connections</span>
+
+            </a>
+
+
+            <a href="/assistant">
+
+                🤖
+                <span>Campus Assistant</span>
+
+            </a>
+
+
+            <a href="/campus-info">
+
+                📍
+                <span>Campus Info</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                ✨ Better Students
+            </p>
+
+            <p>
+                Bigger Dreams
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for courses, resources..."
+                >
+
+            </div>
+
+
+            <a
+                href="/profile"
+                class="student-profile"
+            >
+
+                🔔
+
+
+                <div class="profile-avatar">
+                    👨‍🎓
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Welcome Back!
+                    </small>
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                </div>
+
+
+                <span>
+                    ⌄
+                </span>
+
+            </a>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    📖 Course Material
+                </p>
+
+
+                <h1>
+
+                    {{ category_name }}
+
+                </h1>
+
+
+                <p class="hero-subtitle">
+
+                    {{ course_name }}
+
+                    •
+
+                    Access your available study materials,
+                    notes and resources.
+
+                </p>
+
+
+                <div class="hero-tagline">
+
+                    Learn
+                    <span>•</span>
+                    Practice
+                    <span>•</span>
+                    Grow
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+
+                {% if category == "classes" %}
+
+                    📚
+
+                {% elif category == "assignments" %}
+
+                    📝
+
+                {% else %}
+
+                    📄
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRO -->
+
+        <section class="page-intro">
+
+            <h3>
+                📌 {{ course_name }} → {{ category_name }}
+            </h3>
+
+
+            <p>
+                Browse the materials uploaded for this
+                course and category.
+            </p>
+
+
+            <a
+                href="/resources/{{ course }}"
+                class="back-link"
+            >
+                ← Back to {{ course_name }}
+            </a>
+
+        </section>
+
+
+        <!-- RESOURCE HEADING -->
+
+        <section>
+
+            <div class="resource-heading">
+
+                <h2>
+                    📚 Available Materials
+                </h2>
+
+
+                <div class="resource-count">
+
+                    {{ resources|length }}
+
+                    file(s)
+
+                </div>
+
+            </div>
+
+
+            {% if resources %}
+
+                <div class="resource-list">
+
+                    {% for resource in resources %}
+
+                        <div class="resource-card">
+
+
+                            <div class="resource-left">
+
+
+                                <div class="file-icon">
+
+                                    {% if resource[5] == "PDF" %}
+
+                                        📕
+
+
+                                    {% elif resource[5] == "PPT" or resource[5] == "PPTX" %}
+
+                                        📊
+
+
+                                    {% else %}
+
+                                        📄
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="resource-info">
+
+                                    <h3>
+                                        {{ resource[1] }}
+                                    </h3>
+
+
+                                    <p>
+
+                                        {{ resource[5] }}
+
+                                        •
+
+                                        Uploaded
+                                        {{ resource[6] }}
+
+                                        {% if resource[7] %}
+
+                                            •
+
+                                            By
+                                            {{ resource[7] }}
+
+                                        {% endif %}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <a
+                                href="/uploads/{{ resource[2] }}"
+                                target="_blank"
+                                class="open-button"
+                            >
+                                📂 Open
+                            </a>
+
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        📚
+                    </div>
+
+
+                    <h3>
+                        No materials available yet
+                    </h3>
+
+
+                    <p>
+                        There are no
+                        {{ category_name|lower }}
+                        materials uploaded for
+                        {{ course_name }}
+                        yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                📚 Keep learning
+
+                <br>
+
+                <span>
+                    Everything you need for your course in one place.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫
+
+                <strong>
+                    Campus Mate
+                </strong>
+
+                <small>
+                    Built by Code Crafters
+                </small>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

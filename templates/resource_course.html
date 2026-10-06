@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ course_name }} | Study Resources | Campus Mate
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <style>
+
+        .course-intro {
+            margin-top: 24px;
+            padding: 22px 24px;
+            border-radius: 18px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(124, 92, 246, 0.12),
+                rgba(62, 137, 255, 0.06)
+            );
+
+            border: 1px solid rgba(124, 92, 246, 0.20);
+        }
+
+
+        .course-intro h3 {
+            margin: 0 0 8px;
+            color: #ffffff;
+            font-size: 17px;
+        }
+
+
+        .course-intro p {
+            margin: 0;
+            color: rgba(255,255,255,0.62);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 18px;
+
+            color: #9b87ff;
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        .back-link:hover {
+            color: #b3a5ff;
+        }
+
+
+        .category-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 24px;
+        }
+
+
+        .category-card {
+            display: flex;
+            flex-direction: column;
+
+            min-height: 230px;
+
+            padding: 26px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            text-decoration: none;
+
+            color: white;
+
+            transition: 0.25s ease;
+        }
+
+
+        .category-card:hover {
+            transform: translateY(-5px);
+
+            background:
+                rgba(124,92,246,0.06);
+
+            border-color:
+                rgba(124,92,246,0.30);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.16);
+        }
+
+
+        .category-icon {
+            width: 56px;
+            height: 56px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(124,92,246,0.13);
+
+            border:
+                1px solid
+                rgba(124,92,246,0.18);
+
+            font-size: 27px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .category-card h3 {
+            margin: 0 0 9px;
+
+            color: #ffffff;
+
+            font-size: 18px;
+        }
+
+
+        .category-card p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,0.60);
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+
+        .category-footer {
+            margin-top: auto;
+
+            padding-top: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .category-label {
+            color:
+                rgba(124,92,246,0.82);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        .category-arrow {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(124,92,246,0.12);
+
+            color: #9b87ff;
+
+            font-size: 18px;
+        }
+
+
+        @media (max-width: 850px) {
+
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background-animation"></div>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            🎓
+
+            <span>
+                Campus <b>Mate</b>
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+
+                🏠
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="/announcements">
+
+                📢
+                <span>Announcements</span>
+
+            </a>
+
+
+            <a href="/events">
+
+                📅
+                <span>Events</span>
+
+            </a>
+
+
+            <a
+                href="/resources"
+                class="active"
+            >
+
+                📚
+                <span>Study Resources</span>
+
+            </a>
+
+
+            <a href="/teammates">
+
+                👥
+                <span>Find Teammates</span>
+
+            </a>
+
+
+            <a href="/connections">
+
+                🤝
+                <span>My Connections</span>
+
+            </a>
+
+
+            <a href="/assistant">
+
+                🤖
+                <span>Campus Assistant</span>
+
+            </a>
+
+
+            <a href="/campus-info">
+
+                📍
+                <span>Campus Info</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                ✨ Better Students
+            </p>
+
+            <p>
+                Bigger Dreams
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for courses, resources..."
+                >
+
+            </div>
+
+
+            <a
+                href="/profile"
+                class="student-profile"
+            >
+
+                🔔
+
+
+                <div class="profile-avatar">
+                    👨‍🎓
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Welcome Back!
+                    </small>
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                </div>
+
+
+                <span>
+                    ⌄
+                </span>
+
+            </a>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    📖 Course Resources
+                </p>
+
+
+                <h1>
+
+                    {{ course_name }}
+
+                </h1>
+
+
+                <p class="hero-subtitle">
+
+                    Access Classes, Assignments and
+                    Practice Sheets for this course.
+
+                </p>
+
+
+                <div class="hero-tagline">
+
+                    Learn
+                    <span>•</span>
+                    Practice
+                    <span>•</span>
+                    Grow
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+
+                📚
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRO -->
+
+        <section class="course-intro">
+
+            <h3>
+                📌 Select a Resource Type
+            </h3>
+
+
+            <p>
+                Choose what you want to study from
+                {{ course_name }}.
+            </p>
+
+
+            <a
+                href="/resources"
+                class="back-link"
+            >
+                ← Back to All Courses
+            </a>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    📚 {{ course_name }} Resources
+                </h2>
+
+                <p>
+                    Choose a category
+                </p>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <!-- CLASSES -->
+
+                <a
+                    href="/resources/{{ course }}/classes"
+                    class="category-card"
+                >
+
+                    <div class="category-icon">
+                        📚
+                    </div>
+
+
+                    <h3>
+                        Classes
+                    </h3>
+
+
+                    <p>
+                        Access lecture notes,
+                        PPTs and classroom materials.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span class="category-label">
+                            Open Classes
+                        </span>
+
+                        <span class="category-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ASSIGNMENTS -->
+
+                <a
+                    href="/resources/{{ course }}/assignments"
+                    class="category-card"
+                >
+
+                    <div class="category-icon">
+                        📝
+                    </div>
+
+
+                    <h3>
+                        Assignments
+                    </h3>
+
+
+                    <p>
+                        Find assignments and
+                        related study materials.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span class="category-label">
+                            Open Assignments
+                        </span>
+
+                        <span class="category-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- PRACTICE SHEETS -->
+
+                <a
+                    href="/resources/{{ course }}/practice-sheets"
+                    class="category-card"
+                >
+
+                    <div class="category-icon">
+                        📄
+                    </div>
+
+
+                    <h3>
+                        Practice Sheets
+                    </h3>
+
+
+                    <p>
+                        Practice questions,
+                        exercises and revision materials.
+                    </p>
+
+
+                    <div class="category-footer">
+
+                        <span class="category-label">
+                            Open Practice
+                        </span>
+
+                        <span class="category-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                📚 Keep learning
+
+                <br>
+
+                <span>
+                    Everything you need for your course in one place.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫
+
+                <strong>
+                    Campus Mate
+                </strong>
+
+                <small>
+                    Built by Code Crafters
+                </small>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

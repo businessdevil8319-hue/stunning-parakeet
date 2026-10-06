@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Your Skills | Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-animation"></div>
+
+    <main class="main-content">
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">👋 Join the Community</p>
+
+                <h1>
+                    Add Your <span>Skills</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Tell other students what you can contribute to a project.
+                </p>
+
+            </div>
+
+            <div class="hero-decoration">
+                🚀
+            </div>
+
+        </section>
+
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>📝 Your Details</h2>
+
+                <p>
+                    Fill in your information below.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card card-purple">
+
+                <form method="POST" action="/add-teammate">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                    <br><br>
+
+
+                    <label>Branch</label>
+
+                    <input
+                        type="text"
+                        name="branch"
+                        placeholder="Example: CSE"
+                        required
+                    >
+
+                    <br><br>
+
+
+                    <label>Year</label>
+
+                    <select name="year" required>
+
+                        <option value="">Select your year</option>
+
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+
+                    </select>
+
+                    <br><br>
+
+
+                    <label>Skill</label>
+
+                    <input
+                        type="text"
+                        name="skill"
+                        placeholder="Example: Python"
+                        required
+                    >
+
+                    <br><br>
+
+
+                    <label>About You</label>
+
+                    <textarea
+                        name="description"
+                        placeholder="Tell students what you can do..."
+                        rows="4"
+                    ></textarea>
+
+                    <br><br>
+
+
+                    <button type="submit">
+                        🚀 Add Me
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

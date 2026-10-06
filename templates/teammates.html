@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Find Teammates | Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="background-animation"></div>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            🎓 <span>Campus <b>Mate</b></span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+                🏠 <span>Home</span>
+            </a>
+
+            <a href="/announcements">
+                📢 <span>Announcements</span>
+            </a>
+
+            <a href="/events">
+                📅 <span>Events</span>
+            </a>
+
+            <a href="/resources">
+                📚 <span>Study Resources</span>
+            </a>
+
+            <a href="/teammates" class="active">
+                👥 <span>Find Teammates</span>
+            </a>
+
+            <a href="/assistant">
+                🤖 <span>Campus Assistant</span>
+            </a>
+
+            <a href="/campus-info">
+                📍 <span>Campus Info</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>✨ Better Students</p>
+
+            <p>Bigger Dreams</p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for students, skills..."
+                >
+
+            </div>
+
+
+            <a href="/profile"
+               class="student-profile">
+
+                👨‍🎓
+
+                <div>
+
+                    <small>Campus Mate</small>
+
+                    <strong>My Profile</strong>
+
+                </div>
+
+                <span>⌄</span>
+
+            </a>
+
+        </header>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    👥 Campus Community
+                </p>
+
+                <h1>
+                    Find <span>Teammates</span>
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    Find students with the skills you need
+                    for your next project or hackathon.
+
+                </p>
+
+                <div class="hero-tagline">
+
+                    Connect <span>•</span>
+                    Collaborate <span>•</span>
+                    Build
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+                🤝
+            </div>
+
+        </section>
+
+
+
+        <!-- SEARCH -->
+
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="success-message">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+        <section class="features-section">
+
+
+            <div class="section-heading">
+
+                <h2>
+                    🔎 Find Students by Skill
+                </h2>
+
+                <p>
+                    Search for students based on their skills.
+                </p>
+
+            </div>
+
+
+            <div class="teammate-search-box">
+
+                <form
+                    method="GET"
+                    action="/teammates"
+                    class="teammate-search-form"
+                >
+
+                    <input
+                        type="text"
+                        name="skill"
+                        value="{{ request.args.get('skill', '') }}"
+                        placeholder="🔎 Example: Python, UI/UX, AI..."
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+
+                <a
+                    href="/add-teammate"
+                    class="add-teammate-btn"
+                >
+                    ➕ Add Me as a Teammate
+                </a>
+
+            </div>
+
+
+
+            <!-- SKILL CATEGORIES -->
+
+            <div class="section-heading">
+
+                <h2>
+                    🚀 Popular Skills
+                </h2>
+
+                <p>
+                    Quickly search for students with these skills.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <a
+                    href="/teammates?skill=Python"
+                    class="feature-card card-purple"
+                >
+
+                    <div class="feature-icon">
+                        🐍
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>Python</h3>
+
+                        <p>
+                            Find students interested in Python
+                            programming.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="/teammates?skill=AI"
+                    class="feature-card card-blue"
+                >
+
+                    <div class="feature-icon">
+                        🤖
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>AI & Machine Learning</h3>
+
+                        <p>
+                            Connect with students interested
+                            in AI and ML projects.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="/teammates?skill=UI/UX"
+                    class="feature-card card-green"
+                >
+
+                    <div class="feature-icon">
+                        🎨
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>UI/UX Design</h3>
+
+                        <p>
+                            Find creative students who love
+                            designing interfaces.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="/teammates?skill=Web"
+                    class="feature-card card-orange"
+                >
+
+                    <div class="feature-icon">
+                        🌐
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>Web Development</h3>
+
+                        <p>
+                            Find students interested in
+                            websites and web applications.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="/teammates?skill=App"
+                    class="feature-card card-pink"
+                >
+
+                    <div class="feature-icon">
+                        📱
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>App Development</h3>
+
+                        <p>
+                            Find students interested in
+                            building mobile applications.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- STUDENT RESULTS -->
+
+            <div class="section-heading teammate-results-heading">
+
+                <h2>
+                    👨‍🎓 Available Teammates
+                </h2>
+
+                <p>
+                    Students who are looking to collaborate.
+                </p>
+
+            </div>
+
+
+
+            {% if teammates %}
+
+                <div class="teammate-grid">
+
+                    {% for teammate in teammates %}
+
+                        <div class="teammate-card">
+
+                            <div class="teammate-avatar">
+                                👨‍🎓
+                            </div>
+
+
+                            <div class="teammate-info">
+
+                                <h3>
+                                    {{ teammate[1] }}
+                                </h3>
+
+
+                                <p class="teammate-academic">
+
+                                    🎓 {{ teammate[2] }}
+
+                                    <span>•</span>
+
+                                    📅 {{ teammate[3] }}
+
+                                </p>
+
+
+                                <div class="skill-badge">
+
+                                    🛠️ {{ teammate[4] }}
+
+                                </div>
+
+
+                                {% if teammate[5] %}
+
+                                    <p class="teammate-description">
+
+                                        {{ teammate[5] }}
+
+                                    </p>
+
+                                {% endif %}
+
+
+                                <form
+    method="POST"
+    action="/connect/{{ teammate[0] }}"
+    style="display: inline;"
+>
+    <button
+        type="submit"
+        class="connect-button"
+    >
+        🤝 Connect
+    </button>
+</form>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="no-teammates">
+
+                    <div>
+                        🔍
+                    </div>
+
+                    <h3>
+                        No teammates found
+                    </h3>
+
+                    <p>
+                        Try searching for another skill
+                        or add yourself as a teammate.
+                    </p>
+
+                    <a
+                        href="/add-teammate"
+                        class="add-teammate-btn"
+                    >
+                        ➕ Add Me as a Teammate
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                ⭐ Build together
+
+                <br>
+
+                <span>
+                    Learn together. Grow together.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫 <strong>Campus Mate</strong>
+
+                <small>
+                    Built by Code Crafters
+                </small>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+</body>
+
+</html>

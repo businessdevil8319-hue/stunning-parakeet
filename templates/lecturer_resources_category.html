@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ category_name }} | Lecturer | Campus Mate
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background: #07111f;
+
+            color: white;
+        }
+
+
+        .navbar {
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            background: #0b1728;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: 700;
+        }
+
+
+        .logo span {
+
+            color: #5ee7ff;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .nav-button {
+
+            text-decoration: none;
+
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            font-size: 13px;
+        }
+
+
+        .container {
+
+            max-width: 1050px;
+
+            margin: 45px auto;
+
+            padding: 0 25px;
+        }
+
+
+        .hero {
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102744,
+                    #142d4d
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            margin-bottom: 25px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(94,231,255,0.12);
+
+            color: #5ee7ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hero h1 {
+
+            font-size: 32px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .hero p {
+
+            color:
+                rgba(255,255,255,0.65);
+
+            line-height: 1.6;
+        }
+
+
+        /* COURSE / CATEGORY / BATCH */
+
+        .location-box {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+        }
+
+
+        .location-item {
+
+            padding: 9px 13px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            color:
+                rgba(255,255,255,0.78);
+
+            font-size: 12px;
+        }
+
+
+        .location-item strong {
+
+            color: #5ee7ff;
+        }
+
+
+        .message {
+
+            margin-bottom: 18px;
+
+            padding: 13px 16px;
+
+            border-radius: 11px;
+
+            background:
+                rgba(34,197,94,0.10);
+
+            border:
+                1px solid
+                rgba(34,197,94,0.20);
+
+            color:
+                rgba(255,255,255,0.85);
+
+            font-size: 13px;
+        }
+
+
+        .upload-card {
+
+            padding: 28px;
+
+            margin-bottom: 25px;
+
+            border-radius: 20px;
+
+            background: #0d1b2d;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .upload-card h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .upload-card p {
+
+            color:
+                rgba(255,255,255,0.52);
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .upload-form {
+
+            display: grid;
+
+            gap: 14px;
+        }
+
+
+        .title-input {
+
+            width: 100%;
+
+            padding: 13px 15px;
+
+            border-radius: 11px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            background:
+                rgba(255,255,255,0.04);
+
+            color: white;
+
+            outline: none;
+        }
+
+
+        .title-input:focus {
+
+            border-color: #5ee7ff;
+        }
+
+
+        .file-input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            border:
+                1px dashed
+                rgba(94,231,255,0.30);
+
+            background:
+                rgba(94,231,255,0.04);
+
+            color:
+                rgba(255,255,255,0.65);
+        }
+
+
+        .upload-button {
+
+            width: fit-content;
+
+            padding: 12px 18px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #5ee7ff;
+
+            color: #06101c;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        .resources-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .resources-heading h2 {
+
+            font-size: 20px;
+        }
+
+
+        .count {
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            color:
+                rgba(255,255,255,0.55);
+
+            font-size: 11px;
+        }
+
+
+        .resource-list {
+
+            display: grid;
+
+            gap: 14px;
+        }
+
+
+        .resource-card {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 18px 20px;
+
+            border-radius: 17px;
+
+            background: #0d1b2d;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .resource-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            min-width: 0;
+        }
+
+
+        .file-icon {
+
+            width: 46px;
+
+            height: 46px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 13px;
+
+            background:
+                rgba(94,231,255,0.10);
+
+            font-size: 21px;
+        }
+
+
+        .resource-info {
+
+            min-width: 0;
+        }
+
+
+        .resource-info h3 {
+
+            font-size: 15px;
+
+            margin-bottom: 6px;
+
+            word-break: break-word;
+        }
+
+
+        .resource-info p {
+
+            color:
+                rgba(255,255,255,0.45);
+
+            font-size: 11px;
+        }
+
+
+        .open-button {
+
+            text-decoration: none;
+
+            flex-shrink: 0;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .empty {
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background: #0d1b2d;
+
+            border:
+                1px dashed
+                rgba(255,255,255,0.12);
+        }
+
+
+        .empty-icon {
+
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty h3 {
+
+            margin-bottom: 7px;
+        }
+
+
+        .empty p {
+
+            color:
+                rgba(255,255,255,0.45);
+
+            font-size: 13px;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                padding: 0 18px;
+            }
+
+
+            .container {
+
+                margin-top: 30px;
+            }
+
+
+            .hero {
+
+                padding: 27px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 28px;
+            }
+
+
+            .resource-card {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .open-button {
+
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Campus <span>Mate</span>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <a
+                href="/lecturer-resources/{{ category }}"
+                class="nav-button"
+            >
+                ← {{ category_name }}
+            </a>
+
+
+            <a
+                href="/dashboard"
+                class="nav-button"
+            >
+                Dashboard
+            </a>
+
+
+            <a
+                href="/logout"
+                class="nav-button"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="badge">
+                👨‍🏫 LECTURER MODE
+            </div>
+
+
+            <h1>
+                {{ category_name }}
+            </h1>
+
+
+            <p>
+                Upload and manage materials for the selected
+                course, category and student batch.
+            </p>
+
+
+            <div class="location-box">
+
+                <div class="location-item">
+                    Course:
+                    <strong>
+                        {{ course_name }}
+                    </strong>
+                </div>
+
+
+                <div class="location-item">
+                    Category:
+                    <strong>
+                        {{ category_name }}
+                    </strong>
+                </div>
+
+
+                <div class="location-item">
+                    Batch:
+                    <strong>
+                        {{ batch_name }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FLASH -->
+
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- UPLOAD -->
+
+        <section class="upload-card">
+
+            <h2>
+                📤 Upload {{ category_name }}
+            </h2>
+
+
+            <p>
+                Upload material for
+                <strong>{{ course_name }}</strong>
+                →
+                <strong>{{ batch_name }}</strong>
+            </p>
+
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+                class="upload-form"
+            >
+
+                <input
+                    type="text"
+                    name="title"
+                    class="title-input"
+                    placeholder="Enter material title"
+                    required
+                >
+
+
+                <input
+                    type="file"
+                    name="file"
+                    class="file-input"
+                    accept=".pdf,.ppt,.pptx"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="upload-button"
+                >
+                    📤 Upload Material
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- MATERIALS -->
+
+        <section>
+
+
+            <div class="resources-heading">
+
+                <h2>
+                    📚 Uploaded Materials
+                </h2>
+
+
+                <div class="count">
+
+                    {{ resources|length }}
+
+                    file(s)
+
+                </div>
+
+            </div>
+
+
+            {% if resources %}
+
+                <div class="resource-list">
+
+                    {% for resource in resources %}
+
+                        <div class="resource-card">
+
+
+                            <div class="resource-left">
+
+
+                                <div class="file-icon">
+
+                                    {% if resource[4] == "PDF" %}
+
+                                        📕
+
+                                    {% else %}
+
+                                        📊
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="resource-info">
+
+                                    <h3>
+                                        {{ resource[1] }}
+                                    </h3>
+
+
+                                    <p>
+
+                                        {{ resource[4] }}
+
+                                        •
+
+                                        Uploaded
+                                        {{ resource[5] }}
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <a
+                                href="/uploads/{{ resource[2] }}"
+                                target="_blank"
+                                class="open-button"
+                            >
+                                Open
+                            </a>
+
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        📚
+                    </div>
+
+
+                    <h3>
+                        No materials uploaded yet
+                    </h3>
+
+
+                    <p>
+                        Upload the first
+                        {{ category_name|lower }}
+                        material above.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+    </div>
+
+
+</body>
+
+</html>

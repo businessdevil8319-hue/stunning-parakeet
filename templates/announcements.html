@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Announcements | Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* =========================================
+           ANNOUNCEMENTS PAGE
+           ========================================= */
+
+        .announcement-intro {
+            margin-top: 24px;
+            padding: 22px 25px;
+
+            border-radius: 18px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(124, 92, 246, 0.18),
+                rgba(62, 137, 255, 0.10)
+            );
+
+            border: 1px solid rgba(124, 92, 246, 0.30);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.10);
+        }
+
+        .announcement-intro h3 {
+            margin: 0 0 8px;
+
+            color: #ffffff;
+
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .announcement-intro p {
+            margin: 0;
+
+            color: #d8def2;
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           ANNOUNCEMENT LIST
+           ========================================= */
+
+        .announcement-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 16px;
+
+            margin-top: 24px;
+        }
+
+
+        /* =========================================
+           ANNOUNCEMENT CARD
+           ========================================= */
+
+        .announcement-card {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background: rgba(17, 22, 42, 0.88);
+
+            border: 1px solid rgba(124, 92, 246, 0.18);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.12);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .announcement-card:hover {
+
+            transform: translateY(-3px);
+
+            background: rgba(24, 30, 55, 0.96);
+
+            border-color: rgba(124, 92, 246, 0.45);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.20);
+        }
+
+
+        /* =========================================
+           ICON
+           ========================================= */
+
+        .announcement-icon {
+
+            width: 52px;
+
+            height: 52px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background: rgba(124, 92, 246, 0.16);
+
+            border: 1px solid rgba(124, 92, 246, 0.35);
+
+            font-size: 23px;
+
+            box-shadow:
+                0 5px 15px rgba(124, 92, 246, 0.12);
+        }
+
+
+        /* =========================================
+           CONTENT
+           ========================================= */
+
+        .announcement-content {
+
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .announcement-content h3 {
+
+            margin: 4px 0 8px;
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            line-height: 1.4;
+        }
+
+
+        .announcement-content p {
+
+            margin: 0 0 14px;
+
+            color: #c9d0e6;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           NUMBER
+           ========================================= */
+
+        .announcement-number {
+
+            color: #a995ff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================
+           DATE
+           ========================================= */
+
+        .announcement-date {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            color: #dce2f3;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           LATEST ANNOUNCEMENTS HEADER
+           ========================================= */
+
+        .announcement-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-top: 32px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .announcement-heading h2 {
+
+            margin: 0;
+
+            color: #ffffff;
+
+            font-size: 22px;
+
+            font-weight: 700;
+        }
+
+
+        .announcement-count {
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background: rgba(124, 92, 246, 0.12);
+
+            border: 1px solid rgba(124, 92, 246, 0.25);
+
+            color: #b9aaff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           NO ANNOUNCEMENTS
+           ========================================= */
+
+        .no-announcements {
+
+            margin-top: 25px;
+
+            padding: 50px 25px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            background: rgba(17, 22, 42, 0.80);
+
+            border: 1px dashed rgba(255, 255, 255, 0.18);
+        }
+
+
+        .no-announcements-icon {
+
+            font-size: 40px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .no-announcements h3 {
+
+            margin: 0 0 8px;
+
+            color: #ffffff;
+        }
+
+
+        .no-announcements p {
+
+            margin: 0;
+
+            color: #b8c0d6;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 700px) {
+
+            .announcement-card {
+
+                padding: 17px;
+
+                gap: 12px;
+            }
+
+
+            .announcement-icon {
+
+                width: 44px;
+
+                height: 44px;
+
+                font-size: 19px;
+            }
+
+
+            .announcement-content h3 {
+
+                font-size: 16px;
+            }
+
+
+            .announcement-content p {
+
+                font-size: 12px;
+            }
+
+
+            .announcement-heading {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background-animation"></div>
+
+
+    <!-- =========================================
+         SIDEBAR
+         ========================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            🎓
+
+            <span>
+                Campus <b>Mate</b>
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+                🏠 <span>Home</span>
+            </a>
+
+
+            <a href="/announcements"
+               class="active">
+
+                📢 <span>Announcements</span>
+
+            </a>
+
+
+            <a href="/events">
+                📅 <span>Events</span>
+            </a>
+
+
+            <a href="/resources">
+                📚 <span>Study Resources</span>
+            </a>
+
+
+            <a href="/teammates">
+                👥 <span>Find Teammates</span>
+            </a>
+
+
+            <a href="/connections">
+                🤝 <span>My Connections</span>
+            </a>
+
+
+            <a href="/assistant">
+                🤖 <span>Campus Assistant</span>
+            </a>
+
+
+            <a href="/campus-info">
+                📍 <span>Campus Info</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                ✨ Better Students
+            </p>
+
+            <p>
+                Bigger Dreams
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for announcements..."
+                >
+
+            </div>
+
+
+            <a href="/profile"
+               class="student-profile">
+
+                🔔
+
+
+                <div class="profile-avatar">
+                    👨‍🎓
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Welcome Back!
+                    </small>
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                </div>
+
+
+                <span>
+                    ⌄
+                </span>
+
+            </a>
+
+        </header>
+
+
+
+        <!-- =========================================
+             HERO
+             ========================================= -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    📢 Campus Updates
+                </p>
+
+
+                <h1>
+
+                    Campus
+
+                    <span>
+                        Announcements
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-subtitle">
+
+                    Stay informed about important
+                    college news and updates.
+
+                </p>
+
+
+                <div class="hero-tagline">
+
+                    Stay
+
+                    <span>•</span>
+
+                    Informed
+
+                    <span>•</span>
+
+                    Connected
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+                📢
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             INTRO
+             ========================================= -->
+
+        <section class="announcement-intro">
+
+            <h3>
+                📌 Important Campus Updates
+            </h3>
+
+
+            <p>
+
+                Keep up with the latest announcements
+                and information shared through Campus Mate.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================================
+             ANNOUNCEMENTS
+             ========================================= -->
+
+        <section class="features-section">
+
+
+            <div class="announcement-heading">
+
+                <h2>
+                    📰 Latest Announcements
+                </h2>
+
+
+                <div class="announcement-count">
+
+                    {{ announcements|length }}
+                    update(s)
+
+                </div>
+
+            </div>
+
+
+
+            {% if announcements %}
+
+
+            <div class="announcement-list">
+
+
+                {% for announcement in announcements %}
+
+
+                <div class="announcement-card">
+
+
+                    <div class="announcement-icon">
+                        📢
+                    </div>
+
+
+                    <div class="announcement-content">
+
+
+                        <div class="announcement-number">
+
+                            ANNOUNCEMENT {{ loop.index }}
+
+                        </div>
+
+
+                        <h3>
+
+                            {{ announcement[1] }}
+
+                        </h3>
+
+
+                        <p>
+
+                            {{ announcement[2] }}
+
+                        </p>
+
+
+                        <span class="announcement-date">
+
+                            📅
+
+                            {{ announcement[3] }}
+
+                        </span>
+
+
+                    </div>
+
+                </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- NO ANNOUNCEMENTS -->
+
+            <div class="no-announcements">
+
+                <div class="no-announcements-icon">
+                    📭
+                </div>
+
+
+                <h3>
+                    No announcements yet
+                </h3>
+
+
+                <p>
+                    New campus updates will appear here.
+                </p>
+
+            </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+             ========================================= -->
+
+        <footer class="dashboard-footer">
+
+
+            <div>
+
+                📢 Stay informed
+
+                <br>
+
+                <span>
+                    Never miss an important campus update.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫
+
+                <strong>
+                    Campus Mate
+                </strong>
+
+                <small>
+                    Built by Code Crafters
+                </small>
+
+            </div>
+
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

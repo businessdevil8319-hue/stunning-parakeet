@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Campus Mate</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #3b2b0b,
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050505,
+                    #12100a,
+                    #050505
+                );
+            color: white;
+        }
+
+        .header {
+            padding: 22px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212,175,55,0.25);
+        }
+
+        .logo {
+            color: #f5d76e;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 9px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .back:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 50px 25px;
+        }
+
+        .card {
+            padding: 35px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212,175,55,0.25);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            color: #f5d76e;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            outline: none;
+        }
+
+        select option {
+            background: #111;
+            color: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #d4af37;
+        }
+
+        /* ACCOUNT TYPE */
+
+        .account-type {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .account-option {
+            position: relative;
+        }
+
+        .account-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .account-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #444;
+            background: rgba(0,0,0,0.4);
+            color: #ddd;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .account-option label:hover {
+            border-color: #d4af37;
+            background: rgba(212,175,55,0.08);
+        }
+
+        .account-option input:checked + label {
+            border-color: #f5d76e;
+            background: rgba(212,175,55,0.15);
+            color: #f5d76e;
+            box-shadow: 0 0 15px rgba(212,175,55,0.15);
+        }
+
+        /* BATCH SECTION */
+
+        #batchSection {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(
+                135deg,
+                #b8860b,
+                #f5d76e
+            );
+            color: #111;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.2);
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(212,175,55,0.08);
+            color: #bbb;
+            font-size: 13px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🛡️ Campus Mate Management
+    </div>
+
+    <a
+        href="/management/dashboard"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</header>
+
+
+<main class="container">
+
+    <div class="card">
+
+        <h1>
+            Create Account
+        </h1>
+
+        <p class="subtitle">
+            Create an official Campus Mate account
+            for a student or lecturer.
+        </p>
+
+
+        <form
+            method="POST"
+            action="/management/create-account"
+        >
+
+            <!-- FULL NAME -->
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter full name"
+                required
+            >
+
+
+            <!-- EMAIL -->
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter email address"
+                required
+            >
+
+
+            <!-- PASSWORD -->
+
+            <label>
+                Temporary Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Create login password"
+                required
+            >
+
+
+            <!-- ACCOUNT TYPE -->
+
+            <label>
+                Account Type
+            </label>
+
+            <div class="account-type">
+
+                <div class="account-option">
+
+                    <input
+                        type="radio"
+                        id="student"
+                        name="role"
+                        value="student"
+                        required
+                    >
+
+                    <label for="student">
+                        🎓 Student
+                    </label>
+
+                </div>
+
+
+                <div class="account-option">
+
+                    <input
+                        type="radio"
+                        id="lecturer"
+                        name="role"
+                        value="lecturer"
+                    >
+
+                    <label for="lecturer">
+                        👨‍🏫 Lecturer
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- STUDENT BATCH -->
+
+            <div id="batchSection">
+
+                <label>
+                    Student Batch
+                </label>
+
+                <select
+                    name="batch"
+                    id="batch"
+                >
+
+                    <option value="">
+                        Select Batch
+                    </option>
+
+                    <option value="batch-1-4">
+                        Batch 1 – 4
+                    </option>
+
+                    <option value="batch-5-8">
+                        Batch 5 – 8
+                    </option>
+
+                    <option value="batch-9-12">
+                        Batch 9 – 12
+                    </option>
+
+                    <option value="batch-13-16">
+                        Batch 13 – 16
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- BRANCH -->
+
+            <label>
+                Branch / Department
+            </label>
+
+            <input
+                type="text"
+                name="branch"
+                placeholder="Example: CSE-AIML"
+            >
+
+
+            <!-- YEAR -->
+
+            <label>
+                Year
+            </label>
+
+            <input
+                type="text"
+                name="year"
+                placeholder="Example: 1st Year"
+            >
+
+
+            <!-- CREATE -->
+
+            <button type="submit">
+                CREATE ACCOUNT
+            </button>
+
+        </form>
+
+
+        <div class="info">
+            🔐 Only Management can create student
+            and lecturer accounts.
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    const studentRadio = document.getElementById("student");
+    const lecturerRadio = document.getElementById("lecturer");
+
+    const batchSection = document.getElementById("batchSection");
+    const batchSelect = document.getElementById("batch");
+
+
+    function updateBatchVisibility() {
+
+        if (studentRadio.checked) {
+
+            batchSection.style.display = "block";
+
+            batchSelect.required = true;
+
+        }
+
+        else if (lecturerRadio.checked) {
+
+            batchSection.style.display = "none";
+
+            batchSelect.required = false;
+
+            batchSelect.value = "";
+
+        }
+
+        else {
+
+            batchSection.style.display = "none";
+
+            batchSelect.required = false;
+
+        }
+
+    }
+
+
+    studentRadio.addEventListener(
+        "change",
+        updateBatchVisibility
+    );
+
+    lecturerRadio.addEventListener(
+        "change",
+        updateBatchVisibility
+    );
+
+
+    updateBatchVisibility();
+
+</script>
+
+</body>
+
+</html>

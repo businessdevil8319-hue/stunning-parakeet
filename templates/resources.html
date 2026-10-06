@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Study Resources | Campus Mate</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+    <style>
+
+        .resource-intro {
+            margin-top: 24px;
+            padding: 20px 24px;
+            border-radius: 18px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(124, 92, 246, 0.12),
+                rgba(62, 137, 255, 0.06)
+            );
+
+            border: 1px solid rgba(124, 92, 246, 0.20);
+        }
+
+
+        .resource-intro h3 {
+            margin: 0 0 7px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+
+        .resource-intro p {
+            margin: 0;
+            color: rgba(255,255,255,0.62);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 24px;
+        }
+
+
+        .course-card {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 210px;
+
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            transition: 0.25s ease;
+        }
+
+
+        .course-card:hover {
+            transform: translateY(-4px);
+
+            background: rgba(124,92,246,0.06);
+
+            border-color: rgba(124,92,246,0.30);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.16);
+        }
+
+
+        .course-icon {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background: rgba(124,92,246,0.13);
+
+            border: 1px solid rgba(124,92,246,0.18);
+
+            font-size: 26px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .course-card h3 {
+            margin: 0 0 9px;
+
+            color: #ffffff;
+
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+
+        .course-card p {
+            margin: 0;
+
+            color: rgba(255,255,255,0.60);
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+
+        .course-footer {
+            margin-top: auto;
+
+            padding-top: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .course-label {
+            color: rgba(124,92,246,0.75);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        .course-arrow {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(124,92,246,0.12);
+
+            color: #9b87ff;
+
+            font-size: 18px;
+        }
+
+
+        @media (max-width: 800px) {
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background-animation"></div>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            🎓
+
+            <span>
+                Campus <b>Mate</b>
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+
+                🏠
+                <span>Home</span>
+
+            </a>
+
+
+            <a href="/announcements">
+
+                📢
+                <span>Announcements</span>
+
+            </a>
+
+
+            <a href="/events">
+
+                📅
+                <span>Events</span>
+
+            </a>
+
+
+            <a
+                href="/resources"
+                class="active"
+            >
+
+                📚
+                <span>Study Resources</span>
+
+            </a>
+
+
+            <a href="/teammates">
+
+                👥
+                <span>Find Teammates</span>
+
+            </a>
+
+
+            <a href="/connections">
+
+                🤝
+                <span>My Connections</span>
+
+            </a>
+
+
+            <a href="/assistant">
+
+                🤖
+                <span>Campus Assistant</span>
+
+            </a>
+
+
+            <a href="/campus-info">
+
+                📍
+                <span>Campus Info</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                ✨ Better Students
+            </p>
+
+            <p>
+                Bigger Dreams
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for courses, resources..."
+                >
+
+            </div>
+
+
+            <a
+                href="/profile"
+                class="student-profile"
+            >
+
+                🔔
+
+
+                <div class="profile-avatar">
+                    👨‍🎓
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Welcome Back!
+                    </small>
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                </div>
+
+
+                <span>
+                    ⌄
+                </span>
+
+            </a>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    📚 Your Academic Hub
+                </p>
+
+
+                <h1>
+
+                    Study
+                    <span>Resources</span>
+
+                </h1>
+
+
+                <p class="hero-subtitle">
+
+                    Access your course materials,
+                    assignments and practice sheets
+                    from one organized place.
+
+                </p>
+
+
+                <div class="hero-tagline">
+
+                    Learn
+                    <span>•</span>
+                    Practice
+                    <span>•</span>
+                    Grow
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+
+                📚
+
+            </div>
+
+        </section>
+
+
+        <!-- INTRO -->
+
+        <section class="resource-intro">
+
+            <h3>
+                📌 Select Your Course
+            </h3>
+
+            <p>
+                Choose a course to access its
+                Classes, Assignments and Practice Sheets.
+            </p>
+
+        </section>
+
+
+        <!-- COURSES -->
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    📖 Your Courses
+                </h2>
+
+                <p>
+                    {{ courses|length }} course(s)
+                </p>
+
+            </div>
+
+
+            <div class="course-grid">
+
+
+                <!-- PYTHON -->
+
+                <a
+                    href="/resources/python"
+                    class="course-card"
+                >
+
+                    <div class="course-icon">
+                        🐍
+                    </div>
+
+
+                    <h3>
+                        Python
+                    </h3>
+
+
+                    <p>
+                        Programming concepts,
+                        coding materials and practice resources.
+                    </p>
+
+
+                    <div class="course-footer">
+
+                        <span class="course-label">
+                            Open Course
+                        </span>
+
+                        <span class="course-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- FOUNDATION OF ENGINEERING -->
+
+                <a
+                    href="/resources/foundation-of-engineering"
+                    class="course-card"
+                >
+
+                    <div class="course-icon">
+                        ⚙️
+                    </div>
+
+
+                    <h3>
+                        Foundation of Engineering
+                    </h3>
+
+
+                    <p>
+                        Engineering principles,
+                        design concepts and study materials.
+                    </p>
+
+
+                    <div class="course-footer">
+
+                        <span class="course-label">
+                            Open Course
+                        </span>
+
+                        <span class="course-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- CALCULUS -->
+
+                <a
+                    href="/resources/calculus"
+                    class="course-card"
+                >
+
+                    <div class="course-icon">
+                        ∫
+                    </div>
+
+
+                    <h3>
+                        Calculus
+                    </h3>
+
+
+                    <p>
+                        Mathematical concepts,
+                        examples and practice materials.
+                    </p>
+
+
+                    <div class="course-footer">
+
+                        <span class="course-label">
+                            Open Course
+                        </span>
+
+                        <span class="course-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- COMPUTATIONAL CHEMISTRY -->
+
+                <a
+                    href="/resources/computational-chemistry"
+                    class="course-card"
+                >
+
+                    <div class="course-icon">
+                        🧪
+                    </div>
+
+
+                    <h3>
+                        Computational Chemistry
+                    </h3>
+
+
+                    <p>
+                        Chemistry concepts,
+                        computational methods and resources.
+                    </p>
+
+
+                    <div class="course-footer">
+
+                        <span class="course-label">
+                            Open Course
+                        </span>
+
+                        <span class="course-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- TPSE -->
+
+                <a
+                    href="/resources/tpse"
+                    class="course-card"
+                >
+
+                    <div class="course-icon">
+                        💻
+                    </div>
+
+
+                    <h3>
+                        TPSE
+                    </h3>
+
+
+                    <p>
+                        Course materials,
+                        assignments and revision resources.
+                    </p>
+
+
+                    <div class="course-footer">
+
+                        <span class="course-label">
+                            Open Course
+                        </span>
+
+                        <span class="course-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                📚 Keep learning
+
+                <br>
+
+                <span>
+                    Everything you need for your courses in one place.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫
+
+                <strong>
+                    Campus Mate
+                </strong>
+
+                <small>
+                    Built by Code Crafters
+                </small>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

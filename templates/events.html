@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Events | Campus Mate</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-animation"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            🏫 Campus Mate
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">🏠 Home</a>
+
+            <a href="/announcements">📢 Announcements</a>
+
+            <a href="/events" class="active">📅 Events</a>
+
+            <a href="/resources">📚 Resources</a>
+
+            <a href="/teammates">👥 Find Teammates</a>
+
+            <a href="/assistant">🤖 Campus Assistant</a>
+
+            <a href="/campus-info">📍 Campus Info</a>
+
+            <a href="/login">🔐 Login</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+
+            <div class="search-box">
+                🔎 Search Campus Mate...
+            </div>
+
+            <div class="student-profile">
+                👨‍🎓 Student
+            </div>
+
+        </header>
+
+
+        <!-- Hero -->
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    📅 Stay Updated
+                </p>
+
+                <h1>
+                    Campus <span>Events</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Discover upcoming events, workshops and activities at your college.
+                </p>
+
+            </div>
+
+            <div class="hero-decoration">
+                🎉
+            </div>
+
+        </section>
+
+
+        <!-- Events -->
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    🎯 Upcoming Events
+                </h2>
+
+                <p>
+                    Don't miss what's happening on campus.
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                {% for event in events %}
+
+                <div class="feature-card card-blue">
+
+                    <div class="feature-icon">
+                        📅
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>
+                            {{ event[1] }}
+                        </h3>
+
+                        <p>
+                            {{ event[2] }}
+                        </p>
+
+                        <p>
+                            📆 <strong>{{ event[3] }}</strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            © 2026 Campus Mate | Built by CodeCrafters 🚀
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

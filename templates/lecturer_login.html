@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Lecturer Portal | Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="lecturer-login-page">
+
+    <div class="lecturer-background">
+
+        <div class="lecturer-glow glow-one"></div>
+        <div class="lecturer-glow glow-two"></div>
+
+    </div>
+
+
+    <div class="lecturer-login-wrapper">
+
+        <!-- LEFT SIDE -->
+
+        <div class="lecturer-intro">
+
+            <div class="lecturer-logo">
+                CM
+            </div>
+
+            <p class="lecturer-label">
+                CAMPUS MATE
+            </p>
+
+            <h1>
+                Lecturer<br>
+                <span>Portal</span>
+            </h1>
+
+            <p class="lecturer-description">
+                A dedicated space for lecturers to manage
+                courses, learning resources, assignments
+                and student communication.
+            </p>
+
+            <div class="lecturer-feature">
+
+                <span>✓</span>
+                <p>Manage learning resources</p>
+
+            </div>
+
+            <div class="lecturer-feature">
+
+                <span>✓</span>
+                <p>Share assignments and practice sheets</p>
+
+            </div>
+
+            <div class="lecturer-feature">
+
+                <span>✓</span>
+                <p>Connect with your batches</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <div class="lecturer-login-card">
+
+            <div class="lecturer-card-header">
+
+                <div class="lecturer-icon">
+                    👨‍🏫
+                </div>
+
+                <div>
+                    <h2>Welcome Back</h2>
+
+                    <p>
+                        Sign in to your lecturer account
+                    </p>
+                </div>
+
+            </div>
+
+
+            {% if error %}
+
+            <div class="lecturer-error">
+                {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST"
+                  action="{{ url_for('lecturer_login') }}">
+
+                <div class="lecturer-input-group">
+
+                    <label>
+                        EMAIL ADDRESS
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your lecturer email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="lecturer-input-group">
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit"
+                        class="lecturer-login-button">
+
+                    LOGIN TO LECTURER PORTAL
+
+                    <span>→</span>
+
+                </button>
+
+            </form>
+
+
+            <a href="{{ url_for('home') }}"
+               class="lecturer-back">
+
+                ← Back to Campus Mate
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

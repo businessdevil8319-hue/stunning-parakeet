@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Connections | Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="background-animation"></div>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            🎓 <span>Campus <b>Mate</b></span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+                🏠 <span>Home</span>
+            </a>
+
+            <a href="/announcements">
+                📢 <span>Announcements</span>
+            </a>
+
+            <a href="/events">
+                📅 <span>Events</span>
+            </a>
+
+            <a href="/resources">
+                📚 <span>Study Resources</span>
+            </a>
+
+            <a href="/teammates">
+                👥 <span>Find Teammates</span>
+            </a>
+
+            <a href="/connections" class="active">
+                🤝 <span>My Connections</span>
+            </a>
+
+            <a href="/assistant">
+                🤖 <span>Campus Assistant</span>
+            </a>
+
+            <a href="/campus-info">
+                📍 <span>Campus Info</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>✨ Better Students</p>
+
+            <p>Bigger Dreams</p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search..."
+                >
+
+            </div>
+
+
+            <a href="/profile"
+               class="student-profile">
+
+                👨‍🎓
+
+                <div>
+
+                    <small>Campus Mate</small>
+
+                    <strong>My Profile</strong>
+
+                </div>
+
+                <span>⌄</span>
+
+            </a>
+
+        </header>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    🤝 Your Network
+                </p>
+
+                <h1>
+                    My <span>Connections</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    View students you have requested to connect with.
+                </p>
+
+                <div class="hero-tagline">
+
+                    Connect <span>•</span>
+                    Collaborate <span>•</span>
+                    Grow
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+                🤝
+            </div>
+
+        </section>
+
+
+
+        <!-- CONNECTIONS -->
+
+        <section class="features-section">
+
+
+            <div class="section-heading">
+
+                <h2>
+                    👥 Connection Requests
+                </h2>
+
+                <p>
+                    Your recently sent connection requests.
+                </p>
+
+            </div>
+
+
+
+            {% if connections %}
+
+                <div class="teammate-grid">
+
+                    {% for connection in connections %}
+
+                        <div class="teammate-card">
+
+                            <div class="teammate-avatar">
+                                👨‍🎓
+                            </div>
+
+
+                            <div class="teammate-info">
+
+                                <h3>
+                                    {{ connection[3] }}
+                                </h3>
+
+
+                                <p class="teammate-academic">
+
+                                    🎓 {{ connection[4] }}
+
+                                    <span>•</span>
+
+                                    📅 {{ connection[5] }}
+
+                                </p>
+
+
+                                <div class="skill-badge">
+
+                                    🛠️ {{ connection[6] }}
+
+                                </div>
+
+
+                                <p class="teammate-description">
+
+                                    Request sent on
+                                    {{ connection[2] }}
+
+                                </p>
+
+
+                                <div class="connection-status">
+
+                                    {% if connection[1] == "pending" %}
+
+                                        ⏳ Pending
+
+                                    {% elif connection[1] == "accepted" %}
+
+                                        ✅ Connected
+
+                                    {% else %}
+
+                                        ❌ {{ connection[1] }}
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <div class="no-teammates">
+
+                    <div>
+                        🤝
+                    </div>
+
+                    <h3>
+                        No connections yet
+                    </h3>
+
+                    <p>
+                        Find students with useful skills
+                        and send them a connection request.
+                    </p>
+
+
+                    <a
+                        href="/teammates"
+                        class="add-teammate-btn"
+                    >
+                        👥 Find Teammates
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                ⭐ Connect with others
+
+                <br>
+
+                <span>
+                    Great things happen together.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫 <strong>Campus Mate</strong>
+
+                <small>
+                    Built by Code Crafters
+                </small>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+</body>
+
+</html>

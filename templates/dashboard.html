@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Mate | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    
+    <style>
+        .sidebar-logo {
+    width: 145px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    object-fit: contain;
+}
+
+        /* =========================================
+           DASHBOARD TEXT VISIBILITY FIXES
+           ========================================= */
+
+        /* Campus Hub */
+
+        .dashboard-welcome-card {
+            margin-top: 22px;
+            padding: 22px 26px;
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            /*
+            Keep the original premium light appearance.
+            */
+            background: linear-gradient(
+                135deg,
+                rgba(124, 92, 246, 0.16),
+                rgba(49, 211, 221, 0.10)
+            );
+
+            border: 1px solid rgba(124, 92, 246, 0.25);
+        }
+
+
+        .dashboard-welcome-card h3 {
+            margin: 0 0 7px;
+
+            font-size: 17px;
+
+            color: #29245c !important;
+
+            font-weight: 700;
+        }
+
+
+        .dashboard-welcome-card p {
+            margin: 0;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            color: #5d5a78 !important;
+
+            opacity: 1 !important;
+        }
+
+
+        /* =========================================
+           ONLINE STATUS
+           ========================================= */
+
+        .status-pill {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 8px 13px;
+
+            border-radius: 30px;
+
+            background: rgba(67, 207, 139, 0.12);
+
+            border: 1px solid rgba(67, 207, 139, 0.30);
+
+            color: #15945b !important;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+        }
+
+
+        .status-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #43cf8b;
+
+            box-shadow:
+                0 0 10px rgba(67, 207, 139, 0.8);
+        }
+
+
+        /* =========================================
+           STATISTICS
+           ========================================= */
+
+        .dashboard-stat-row {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+
+            margin-top: 22px;
+        }
+
+
+        .dashboard-stat {
+
+            padding: 17px;
+
+            border-radius: 15px;
+
+            /*
+            Keep premium card style.
+            */
+            background: rgba(255, 255, 255, 0.45);
+
+            border: 1px solid
+                rgba(124, 92, 246, 0.18);
+        }
+
+
+        .dashboard-stat-label {
+
+            font-size: 11px;
+
+            color: #686584 !important;
+
+            margin-bottom: 7px;
+
+            opacity: 1 !important;
+
+            letter-spacing: 0.5px;
+
+            font-weight: 600;
+        }
+
+
+        .dashboard-stat-value {
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            color: #29245c !important;
+        }
+
+
+        /* =========================================
+           CAMPUS FEATURES HEADING
+           ========================================= */
+
+        .section-heading h2 {
+
+            color: #29245c !important;
+
+        }
+
+
+        .section-heading p {
+
+            color: #625f7d !important;
+
+            opacity: 1 !important;
+
+        }
+
+
+        /* =========================================
+           FEATURE CARDS
+           
+           IMPORTANT:
+           DO NOT CHANGE THE CARD BACKGROUND.
+           Your original style.css controls it.
+           ========================================= */
+
+        .feature-card {
+
+            text-decoration: none;
+
+        }
+
+
+        .feature-card .feature-text h3 {
+
+            color: #29245c !important;
+
+            font-weight: 700;
+
+        }
+
+
+        .feature-card .feature-text p {
+
+            color: #5f5c78 !important;
+
+            opacity: 1 !important;
+
+            line-height: 1.5;
+
+        }
+
+
+        .feature-card .arrow {
+
+            color: #ffffff !important;
+
+        }
+
+
+        /* =========================================
+           QUICK ACTIONS
+           ========================================= */
+
+        .quick-section {
+
+            margin-top: 28px;
+
+        }
+
+
+        .quick-section-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .quick-section-heading h2 {
+
+            margin: 0;
+
+            font-size: 19px;
+
+            color: #29245c !important;
+
+        }
+
+
+        .quick-section-heading span {
+
+            font-size: 12px;
+
+            color: #625f7d !important;
+
+            opacity: 1 !important;
+
+        }
+
+
+        .quick-actions {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+
+        }
+
+
+        .quick-action {
+
+            text-decoration: none;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            border: 1px solid
+                rgba(124, 92, 246, 0.16);
+
+            transition: 0.25s ease;
+
+        }
+
+
+        .quick-action:hover {
+
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(124, 92, 246, 0.40);
+
+            background:
+                rgba(124, 92, 246, 0.10);
+
+        }
+
+
+        .quick-action-icon {
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .quick-action strong {
+
+            display: block;
+
+            color: #29245c !important;
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .quick-action small {
+
+            color: #686584 !important;
+
+            font-size: 11px;
+
+            opacity: 1 !important;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+           ========================================= */
+
+        @media (max-width: 800px) {
+
+            .quick-actions,
+            .dashboard-stat-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .dashboard-welcome-card {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANIMATED BACKGROUND
+         ========================================= -->
+
+    <div class="background-animation"></div>
+
+
+
+    <!-- =========================================
+         SIDEBAR
+         ========================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+    <img
+        src="{{ url_for('static', filename='campus-mate-logo.png') }}"
+        alt="Campus Mate"
+        class="sidebar-logo"
+    >
+
+</div>
+
+
+
+        <nav class="sidebar-nav">
+
+
+            <a href="/dashboard"
+               class="active">
+
+                🏠
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <a href="/announcements">
+
+                📢
+
+                <span>
+                    Announcements
+                </span>
+
+            </a>
+
+
+            <a href="/events">
+
+                📅
+
+                <span>
+                    Events
+                </span>
+
+            </a>
+
+
+            <a href="/resources">
+
+                📚
+
+                <span>
+                    Study Resources
+                </span>
+
+            </a>
+
+
+            <a href="/teammates">
+
+                👥
+
+                <span>
+                    Find Teammates
+                </span>
+
+            </a>
+
+
+            <a href="/connections">
+
+                🤝
+
+                <span>
+                    My Connections
+                </span>
+
+            </a>
+
+
+            <a href="/assistant">
+
+                🤖
+
+                <span>
+                    Campus Assistant
+                </span>
+
+            </a>
+
+
+            <a href="/campus-info">
+
+                📍
+
+                <span>
+                    Campus Info
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                ✨ Better Students
+            </p>
+
+            <p>
+                Bigger Dreams
+            </p>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main class="main-content">
+
+
+
+        <!-- =====================================
+             TOP BAR
+             ===================================== -->
+
+        <header class="topbar">
+
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for events, resources, teams..."
+                >
+
+            </div>
+
+
+
+            <a href="/profile"
+               class="student-profile">
+
+
+                🔔
+
+
+                <div class="profile-avatar">
+
+                    👨‍🎓
+
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Welcome Back!
+                    </small>
+
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                </div>
+
+
+                <span>
+                    ⌄
+                </span>
+
+
+            </a>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             HERO
+             ===================================== -->
+
+        <section class="hero-dashboard">
+
+
+            <div class="hero-content">
+
+
+                <p class="hello">
+
+                    Hello, Student! 👋
+
+                </p>
+
+
+                <h1>
+
+                    Welcome to
+
+                    <span>
+                        Campus Mate
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-subtitle">
+
+                    Your college life, organized in one place.
+
+                </p>
+
+
+                <div class="hero-tagline">
+
+                    Learn
+
+                    <span>•</span>
+
+                    Connect
+
+                    <span>•</span>
+
+                    Grow
+
+                </div>
+
+
+            </div>
+
+
+            <div class="hero-decoration">
+
+                🏫
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             CAMPUS HUB
+             ===================================== -->
+
+        <section class="dashboard-welcome-card">
+
+
+            <div>
+
+
+                <h3>
+
+                    🎓 Your Campus Hub
+
+                </h3>
+
+
+                <p>
+
+                    Access your college updates, resources,
+                    teammates and campus information from one place.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="status-pill">
+
+
+                <span class="status-dot"></span>
+
+
+                Campus Mate Online
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             QUICK STATS
+             ===================================== -->
+
+        <section class="dashboard-stat-row">
+
+
+            <div class="dashboard-stat">
+
+
+                <div class="dashboard-stat-label">
+
+                    PLATFORM
+
+                </div>
+
+
+                <div class="dashboard-stat-value">
+
+                    Campus Mate
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="dashboard-stat">
+
+
+                <div class="dashboard-stat-label">
+
+                    PURPOSE
+
+                </div>
+
+
+                <div class="dashboard-stat-value">
+
+                    Learn & Connect
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="dashboard-stat">
+
+
+                <div class="dashboard-stat-label">
+
+                    COMMUNITY
+
+                </div>
+
+
+                <div class="dashboard-stat-value">
+
+                    Students
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             CAMPUS FEATURES
+             ===================================== -->
+
+        <section class="features-section">
+
+
+            <div class="section-heading">
+
+
+                <h2>
+
+                    ✨ Campus Features
+
+                </h2>
+
+
+                <p>
+
+                    Everything you need →
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="feature-grid">
+
+
+
+                <!-- ANNOUNCEMENTS -->
+
+                <a href="/announcements"
+                   class="feature-card card-purple">
+
+
+                    <div class="feature-icon">
+
+                        📢
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            Announcements
+
+                        </h3>
+
+
+                        <p>
+
+                            Stay updated with important
+                            college announcements.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- EVENTS -->
+
+                <a href="/events"
+                   class="feature-card card-blue">
+
+
+                    <div class="feature-icon">
+
+                        📅
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            Events
+
+                        </h3>
+
+
+                        <p>
+
+                            Discover upcoming college
+                            events and activities.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- STUDY RESOURCES -->
+
+                <a href="/resources"
+                   class="feature-card card-green">
+
+
+                    <div class="feature-icon">
+
+                        📚
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            Study Resources
+
+                        </h3>
+
+
+                        <p>
+
+                            Find useful notes, materials
+                            and learning resources.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- FIND TEAMMATES -->
+
+                <a href="/teammates"
+                   class="feature-card card-violet">
+
+
+                    <div class="feature-icon">
+
+                        👥
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            Find Teammates
+
+                        </h3>
+
+
+                        <p>
+
+                            Connect with students and
+                            build your project team.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- CONNECTIONS -->
+
+                <a href="/connections"
+                   class="feature-card card-blue">
+
+
+                    <div class="feature-icon">
+
+                        🤝
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            My Connections
+
+                        </h3>
+
+
+                        <p>
+
+                            View your teammate connection
+                            requests and status.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- CAMPUS ASSISTANT -->
+
+                <a href="/assistant"
+                   class="feature-card card-orange">
+
+
+                    <div class="feature-icon">
+
+                        🤖
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            Campus Assistant
+
+                        </h3>
+
+
+                        <p>
+
+                            Ask questions and get help
+                            with campus information.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- CAMPUS INFO -->
+
+                <a href="/campus-info"
+                   class="feature-card card-pink">
+
+
+                    <div class="feature-icon">
+
+                        📍
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            Campus Info
+
+                        </h3>
+
+
+                        <p>
+
+                            Quickly find important
+                            information about your campus.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+
+                <!-- MY PROFILE -->
+
+                <a href="/profile"
+                   class="feature-card card-purple">
+
+
+                    <div class="feature-icon">
+
+                        👤
+
+                    </div>
+
+
+                    <div class="feature-text">
+
+
+                        <h3>
+
+                            My Profile
+
+                        </h3>
+
+
+                        <p>
+
+                            View your student information
+                            and account details.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="arrow">
+
+                        →
+
+                    </div>
+
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             QUICK ACTIONS
+             ===================================== -->
+
+        <section class="quick-section">
+
+
+            <div class="quick-section-heading">
+
+
+                <h2>
+
+                    ⚡ Quick Actions
+
+                </h2>
+
+
+                <span>
+
+                    Get started quickly
+
+                </span>
+
+
+            </div>
+
+
+
+            <div class="quick-actions">
+
+
+                <a href="/teammates"
+                   class="quick-action">
+
+
+                    <div class="quick-action-icon">
+
+                        👥
+
+                    </div>
+
+
+                    <strong>
+
+                        Find a Teammate
+
+                    </strong>
+
+
+                    <small>
+
+                        Discover students by skill
+
+                    </small>
+
+
+                </a>
+
+
+
+                <a href="/events"
+                   class="quick-action">
+
+
+                    <div class="quick-action-icon">
+
+                        📅
+
+                    </div>
+
+
+                    <strong>
+
+                        Explore Events
+
+                    </strong>
+
+
+                    <small>
+
+                        See upcoming campus activities
+
+                    </small>
+
+
+                </a>
+
+
+
+                <a href="/assistant"
+                   class="quick-action">
+
+
+                    <div class="quick-action-icon">
+
+                        🤖
+
+                    </div>
+
+
+                    <strong>
+
+                        Ask Assistant
+
+                    </strong>
+
+
+                    <small>
+
+                        Get quick campus help
+
+                    </small>
+
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             FOOTER
+             ===================================== -->
+
+        <footer class="dashboard-footer">
+
+
+            <div>
+
+                ⭐ Small steps every day
+
+                <br>
+
+                <span>
+
+                    lead to big dreams.
+
+                </span>
+
+            </div>
+
+
+
+            <div class="footer-brand">
+
+
+                🏫
+
+
+                <strong>
+
+                    Campus Mate
+
+                </strong>
+
+
+                <small>
+
+                    Built by Code Crafters
+
+                </small>
+
+
+            </div>
+
+
+        </footer>
+
+
+    </main>
+
+
+</body>
+
+</html>

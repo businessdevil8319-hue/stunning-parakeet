@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Study Resources | Lecturer | Campus Mate</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            min-height: 100vh;
+            background: #07111f;
+            color: white;
+        }
+
+
+        /* =========================
+           NAVBAR
+           ========================= */
+
+        .navbar {
+
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            background: #0b1728;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+
+        .logo span {
+            color: #5ee7ff;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .nav-button {
+
+            text-decoration: none;
+
+            color: white;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+           ========================= */
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+            padding: 0 25px;
+        }
+
+
+        /* =========================
+           HERO
+           ========================= */
+
+        .hero {
+
+            padding: 40px;
+
+            margin-bottom: 30px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102744,
+                    #142d4d
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            margin-bottom: 18px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(94,231,255,0.12);
+
+            border:
+                1px solid
+                rgba(94,231,255,0.20);
+
+            color: #5ee7ff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .hero h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hero p {
+
+            color:
+                rgba(255,255,255,0.70);
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            max-width: 700px;
+        }
+
+
+        /* =========================
+           SECTION
+           ========================= */
+
+        .section-title {
+
+            margin-bottom: 20px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .section-title p {
+
+            color:
+                rgba(255,255,255,0.52);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           CATEGORY CARDS
+           ========================= */
+
+        .category-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .category-card {
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-height: 255px;
+
+            padding: 26px;
+
+            border-radius: 20px;
+
+            background: #0d1b2d;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+
+        .category-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                rgba(94,231,255,0.28);
+        }
+
+
+        .category-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(94,231,255,0.10);
+
+            font-size: 28px;
+        }
+
+
+        .category-card h3 {
+
+            font-size: 19px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .category-card p {
+
+            color:
+                rgba(255,255,255,0.58);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+
+        .manage-button {
+
+            margin-top: auto;
+
+            display: inline-block;
+
+            width: fit-content;
+
+            text-decoration: none;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            background: #5ee7ff;
+
+            color: #06101c;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .manage-button:hover {
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           INFO
+           ========================= */
+
+        .info-box {
+
+            margin-top: 28px;
+
+            padding: 20px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(94,231,255,0.05);
+
+            border:
+                1px solid
+                rgba(94,231,255,0.12);
+
+            color:
+                rgba(255,255,255,0.65);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media (max-width: 800px) {
+
+            .category-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding: 0 18px;
+            }
+
+
+            .container {
+
+                margin-top: 30px;
+            }
+
+
+            .hero {
+
+                padding: 28px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+         ========================= -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            Campus <span>Mate</span>
+
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <a
+                href="/dashboard"
+                class="nav-button"
+            >
+                ← Dashboard
+            </a>
+
+
+            <a
+                href="/logout"
+                class="nav-button"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN
+         ========================= -->
+
+    <div class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="badge">
+
+                👨‍🏫 LECTURER RESOURCE CENTER
+
+            </div>
+
+
+            <h1>
+
+                Study Resources
+
+            </h1>
+
+
+            <p>
+
+                Choose a resource category to manage
+                learning materials for students.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- CATEGORY SECTION -->
+
+        <section>
+
+
+            <div class="section-title">
+
+                <h2>
+
+                    📚 Resource Categories
+
+                </h2>
+
+
+                <p>
+
+                    Select where you want to add or manage
+                    study materials.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="category-grid">
+
+
+                <!-- CLASSES -->
+
+                <div class="category-card">
+
+                    <div class="category-icon">
+
+                        🏫
+
+                    </div>
+
+
+                    <h3>
+
+                        Classes
+
+                    </h3>
+
+
+                    <p>
+
+                        Upload class PPTs, PDFs,
+                        notes and other learning materials.
+
+                    </p>
+
+
+                    <a
+                        href="/lecturer-resources/classes"
+                        class="manage-button"
+                    >
+
+                        Manage Classes
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- ASSIGNMENTS -->
+
+                <div class="category-card">
+
+                    <div class="category-icon">
+
+                        📝
+
+                    </div>
+
+
+                    <h3>
+
+                        Assignments
+
+                    </h3>
+
+
+                    <p>
+
+                        Upload assignments and academic
+                        tasks for students.
+
+                    </p>
+
+
+                    <a
+                        href="/lecturer-resources/assignments"
+                        class="manage-button"
+                    >
+
+                        Manage Assignments
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- PRACTICE SHEETS -->
+
+                <div class="category-card">
+
+                    <div class="category-icon">
+
+                        📄
+
+                    </div>
+
+
+                    <h3>
+
+                        Practice Sheets
+
+                    </h3>
+
+
+                    <p>
+
+                        Upload worksheets,
+                        revision material and practice sheets.
+
+                    </p>
+
+
+                    <a
+                        href="/lecturer-resources/practice-sheets"
+                        class="manage-button"
+                    >
+
+                        Manage Practice Sheets
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BATCH CHAT -->
+
+<div class="category-card">
+
+    <div class="category-icon">
+        💬
+    </div>
+
+    <h3>
+        Batch Chat
+    </h3>
+
+    <p>
+        Chat with students in your batch
+        through a dedicated group chat.
+    </p>
+
+    <a
+        href="/batch-chat"
+        class="manage-button"
+    >
+        Open Batch Chat
+    </a>
+
+</div>
+
+
+
+            <div class="info-box">
+
+                💡 <strong>Lecturer Access:</strong>
+
+                You can upload PDF, PPT and PPTX files
+                inside each resource category.
+                Students will be able to access the materials
+                from their Study Resources section.
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Batch Chat | Campus Mate</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            padding: 22px 30px;
+            background: #111936;
+            border-bottom: 1px solid #29345f;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            color: #aeb8dc;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #9daeff;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        .batch-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .batch-card {
+            background: #151d3d;
+            border: 1px solid #303b6b;
+            border-radius: 18px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .batch-card:hover {
+            transform: translateY(-5px);
+            border-color: #7285ff;
+        }
+
+        .chat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: #29376f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .batch-card h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .batch-card p {
+            color: #aeb8dc;
+            line-height: 1.6;
+            min-height: 50px;
+        }
+
+        .chat-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: #6675f5;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .chat-button:hover {
+            background: #7b88ff;
+        }
+
+        @media (max-width: 700px) {
+            .batch-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>💬 Batch Chat</h1>
+        <p>Connect with students and lecturers in your batch.</p>
+    </div>
+
+    <div class="container">
+
+        <a href="/dashboard" class="back">
+            ← Back to Dashboard
+        </a>
+
+        <div class="batch-grid">
+
+            {% for batch_key, batch_name in batches.items() %}
+
+            <div class="batch-card">
+
+                <div class="chat-icon">
+                    💬
+                </div>
+
+                <h2>
+                    {{ batch_name }}
+                </h2>
+
+                <p>
+                    Join the group chat for
+                    {{ batch_name }}.
+                </p>
+
+                <a
+                    href="/batch-chat/{{ batch_key }}"
+                    class="chat-button"
+                >
+                    Open Chat →
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>

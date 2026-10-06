@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="home-page">
+
+    <!-- TOP NAVBAR -->
+    <header class="home-navbar">
+
+        <div class="home-logo">
+            <span>CM</span>
+            <div>
+                <h1>Campus Mate</h1>
+                <p>SR UNIVERSITY</p>
+            </div>
+        </div>
+
+        <!-- MENU BUTTON -->
+        <button class="menu-button" onclick="openMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <main class="home-content">
+
+        <div class="home-overlay">
+
+            <p class="home-small-title">
+                WELCOME TO
+            </p>
+
+            <h2>
+                CAMPUS<br>
+                <span>MATE</span>
+            </h2>
+
+            <p class="home-description">
+                Your complete digital campus companion.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- DARK OVERLAY -->
+    <div id="menuOverlay"
+         class="menu-overlay"
+         onclick="closeMenu()">
+    </div>
+
+
+    <!-- SLIDE MENU -->
+    <aside id="sideMenu" class="side-menu">
+
+        <!-- MENU HEADER -->
+        <div class="side-menu-header">
+
+            <div class="menu-brand">
+                <strong>CM</strong>
+
+                <div>
+                    <h2>Campus Mate</h2>
+                    <p>SR UNIVERSITY</p>
+                </div>
+            </div>
+
+            <button class="close-button"
+                    onclick="closeMenu()">
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN OPTIONS -->
+        <div class="menu-options">
+
+            <a href="{{ url_for('management_login') }}"
+               class="menu-option management-option">
+
+                <div class="option-icon">
+                    ⚙
+                </div>
+
+                <div>
+                    <strong>MANAGEMENT</strong>
+                    <span>Management Portal</span>
+                </div>
+
+                <b>›</b>
+
+            </a>
+
+
+           <a href="{{ url_for('lecturer_login') }}"
+   class="menu-option lecturer-option">
+
+                <div class="option-icon">
+                    👨‍🏫
+                </div>
+
+                <div>
+                    <strong>LECTURER</strong>
+                    <span>Lecturer Portal</span>
+                </div>
+
+                <b>›</b>
+
+            </a>
+
+
+            <a href="{{ url_for('login') }}?role=student"
+               class="menu-option student-option">
+
+                <div class="option-icon">
+                    🎓
+                </div>
+
+                <div>
+                    <strong>STUDENT</strong>
+                    <span>Student Portal</span>
+                </div>
+
+                <b>›</b>
+
+            </a>
+
+        </div>
+
+
+        <!-- MENU FOOTER -->
+        <div class="side-menu-footer">
+            <p>Campus Mate</p>
+            <span>Smart Campus • Better Learning</span>
+        </div>
+
+    </aside>
+
+
+    <script>
+
+        function openMenu() {
+            document.getElementById("sideMenu")
+                .classList.add("menu-open");
+
+            document.getElementById("menuOverlay")
+                .classList.add("overlay-open");
+
+            document.body.classList.add("menu-active");
+        }
+
+
+        function closeMenu() {
+            document.getElementById("sideMenu")
+                .classList.remove("menu-open");
+
+            document.getElementById("menuOverlay")
+                .classList.remove("overlay-open");
+
+            document.body.classList.remove("menu-active");
+        }
+
+
+        // Close menu when pressing ESC
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

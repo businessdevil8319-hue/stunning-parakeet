@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {{ category_name }} | Select Batch | Campus Mate
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #07111f;
+            color: white;
+        }
+
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            background: #0b1728;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #5ee7ff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.08);
+            font-size: 13px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 25px;
+        }
+
+        .hero {
+            padding: 35px;
+            border-radius: 22px;
+            background: linear-gradient(
+                135deg,
+                #102744,
+                #142d4d
+            );
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            background: rgba(94,231,255,0.12);
+            color: #5ee7ff;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+
+        .course-box {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 9px 13px;
+            border-radius: 10px;
+            background: rgba(94,231,255,0.10);
+            color: #5ee7ff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .batch-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .batch-card {
+            padding: 28px;
+            border-radius: 20px;
+            background: #0d1b2d;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.25s;
+        }
+
+        .batch-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(94,231,255,0.35);
+        }
+
+        .batch-icon {
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: rgba(94,231,255,0.10);
+            font-size: 26px;
+            margin-bottom: 18px;
+        }
+
+        .batch-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .batch-card p {
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .open-button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 11px 17px;
+            border-radius: 10px;
+            background: #5ee7ff;
+            color: #06101c;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .hero {
+                padding: 27px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .batch-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <div class="logo">
+            Campus <span>Mate</span>
+        </div>
+
+        <div class="nav-buttons">
+
+            <a
+                href="/lecturer-resources"
+                class="nav-button"
+            >
+                ← Resources
+            </a>
+
+            <a
+                href="/logout"
+                class="nav-button"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <section class="hero">
+
+            <div class="badge">
+                👨‍🏫 LECTURER MODE
+            </div>
+
+            <h1>
+                {{ category_name }}
+            </h1>
+
+            <p>
+                Select a student batch to manage
+                {{ category_name|lower }} materials.
+            </p>
+
+            {% if session.get("lecturer_course") %}
+
+                <div class="course-box">
+                    Course:
+                    {{ session["lecturer_course"]
+                    |replace("-", " ")
+                    |title }}
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <h2 class="section-title">
+            Select Student Batch
+        </h2>
+
+
+        <div class="batch-grid">
+
+
+            <!-- BATCH 1 - 4 -->
+
+            <div class="batch-card">
+
+                <div class="batch-icon">
+                    🎓
+                </div>
+
+                <h2>
+                    Batch 1 – 4
+                </h2>
+
+                <p>
+                    Manage {{ category_name|lower }}
+                    materials for Batch 1 to 4.
+                </p>
+
+                <a
+                    href="/lecturer-resources/{{ category }}/batch-1-4"
+                    class="open-button"
+                >
+                    Open Batch
+                </a>
+
+            </div>
+
+
+            <!-- BATCH 5 - 8 -->
+
+            <div class="batch-card">
+
+                <div class="batch-icon">
+                    🎓
+                </div>
+
+                <h2>
+                    Batch 5 – 8
+                </h2>
+
+                <p>
+                    Manage {{ category_name|lower }}
+                    materials for Batch 5 to 8.
+                </p>
+
+                <a
+                    href="/lecturer-resources/{{ category }}/batch-5-8"
+                    class="open-button"
+                >
+                    Open Batch
+                </a>
+
+            </div>
+
+
+            <!-- BATCH 9 - 12 -->
+
+            <div class="batch-card">
+
+                <div class="batch-icon">
+                    🎓
+                </div>
+
+                <h2>
+                    Batch 9 – 12
+                </h2>
+
+                <p>
+                    Manage {{ category_name|lower }}
+                    materials for Batch 9 to 12.
+                </p>
+
+                <a
+                    href="/lecturer-resources/{{ category }}/batch-9-12"
+                    class="open-button"
+                >
+                    Open Batch
+                </a>
+
+            </div>
+
+
+            <!-- BATCH 13 - 16 -->
+
+            <div class="batch-card">
+
+                <div class="batch-icon">
+                    🎓
+                </div>
+
+                <h2>
+                    Batch 13 – 16
+                </h2>
+
+                <p>
+                    Manage {{ category_name|lower }}
+                    materials for Batch 13 to 16.
+                </p>
+
+                <a
+                    href="/lecturer-resources/{{ category }}/batch-13-16"
+                    class="open-button"
+                >
+                    Open Batch
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

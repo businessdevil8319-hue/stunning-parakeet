@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mail | Campus Mate</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef7ff, #f7f2ff);
+            color: #172033;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            background: rgba(10, 25, 47, 0.97);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            color: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #64d8ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #dce8f5;
+            padding: 10px 16px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.12);
+            color: white;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #4c5ce7;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .mail-card {
+            background: rgba(255,255,255,0.92);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 18px 50px rgba(31,55,90,0.14);
+            border: 1px solid rgba(255,255,255,0.9);
+        }
+
+        .mail-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #5965f2, #7c4dff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 25px rgba(89,101,242,0.25);
+        }
+
+        .subject {
+            font-size: 30px;
+            font-weight: 800;
+            color: #172033;
+            margin-bottom: 15px;
+        }
+
+        .meta {
+            background: #f5f7fb;
+            border-radius: 14px;
+            padding: 15px 18px;
+            margin-bottom: 28px;
+            color: #657189;
+        }
+
+        .meta strong {
+            color: #26334d;
+        }
+
+        .message {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #39445a;
+            white-space: pre-wrap;
+            padding: 10px 2px;
+        }
+
+        .mail-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e8ecf2;
+            color: #8993a6;
+            font-size: 13px;
+        }
+
+        .back-inbox {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: #172033;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-inbox:hover {
+            transform: translateY(-2px);
+            background: #263b63;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .mail-card {
+                padding: 25px 20px;
+            }
+
+            .subject {
+                font-size: 24px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Campus <span>Mate</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/mails">
+                📩 Mail
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <a href="/mails" class="back-button">
+            ← Back to Inbox
+        </a>
+
+
+        <div class="mail-card">
+
+            <div class="mail-icon">
+                ✉️
+            </div>
+
+
+            <div class="subject">
+                {{ mail.subject }}
+            </div>
+
+
+            <div class="meta">
+
+                <div>
+                    From:
+                    <strong>{{ mail.name }}</strong>
+                </div>
+
+                <div style="margin-top: 6px;">
+                    Date:
+                    <strong>{{ mail.created_at }}</strong>
+                </div>
+
+            </div>
+
+
+            <div class="message">
+                {{ mail.message }}
+            </div>
+
+
+            <div class="mail-footer">
+                This message was sent through Campus Mate.
+            </div>
+
+
+            <a href="/mails" class="back-inbox">
+                ← Back to Inbox
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

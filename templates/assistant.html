@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Assistant | Campus Mate</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        /* FORCE ACTIVE SIDEBAR ITEM */
+.sidebar-nav a.active {
+    background: linear-gradient(
+        135deg,
+        #6652f5,
+        #3e89ff
+    ) !important;
+
+    color: #ffffff !important;
+
+    border-radius: 12px !important;
+
+    box-shadow:
+        0 8px 22px rgba(62, 137, 255, 0.25) !important;
+
+    opacity: 1 !important;
+}
+
+.sidebar-nav a.active span {
+    color: #ffffff !important;
+}
+
+.sidebar-nav a.active:hover {
+    background: linear-gradient(
+        135deg,
+        #6652f5,
+        #3e89ff
+    ) !important;
+
+    color: #ffffff !important;
+}
+
+        /* =================================
+           ASSISTANT PAGE
+           ================================= */
+
+        .assistant-form-card {
+            margin-top: 25px;
+            padding: 24px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .assistant-form {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .assistant-input {
+            flex: 1;
+            padding: 15px 17px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(10,13,28,0.75);
+            color: #ffffff;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .assistant-input::placeholder {
+            color: rgba(255,255,255,0.40);
+        }
+
+        .assistant-input:focus {
+            border-color: rgba(124,92,246,0.70);
+            box-shadow: 0 0 0 3px rgba(124,92,246,0.10);
+        }
+
+        .assistant-button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(
+                135deg,
+                #7c5cf6,
+                #3e89ff
+            );
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .assistant-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124,92,246,0.25);
+        }
+
+        .assistant-answer {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(67,207,139,0.07);
+            border: 1px solid rgba(67,207,139,0.20);
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .assistant-answer-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(67,207,139,0.12);
+            font-size: 21px;
+            flex-shrink: 0;
+        }
+
+        .assistant-answer h3 {
+            margin: 0 0 7px;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .assistant-answer p {
+            margin: 0;
+            color: rgba(255,255,255,0.72);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .assistant-tip {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: rgba(124,92,246,0.07);
+            border: 1px solid rgba(124,92,246,0.14);
+            color: rgba(255,255,255,0.58);
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+
+            .assistant-form {
+                flex-direction: column;
+            }
+
+            .assistant-button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background-animation"></div>
+
+
+    <!-- =================================
+         SIDEBAR
+         ================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            🎓
+
+            <span>
+                Campus <b>Mate</b>
+            </span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard">
+                🏠 <span>Home</span>
+            </a>
+
+            <a href="/announcements">
+                📢 <span>Announcements</span>
+            </a>
+
+            <a href="/events">
+                📅 <span>Events</span>
+            </a>
+
+            <a href="/resources">
+                📚 <span>Study Resources</span>
+            </a>
+
+            <a href="/teammates">
+                👥 <span>Find Teammates</span>
+            </a>
+
+            <a href="/connections">
+                🤝 <span>My Connections</span>
+            </a>
+
+            <!-- ACTIVE PAGE -->
+
+            <a href="/assistant" class="active">
+                🤖 <span>Campus Assistant</span>
+            </a>
+
+            <a href="/campus-info">
+                📍 <span>Campus Info</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                ✨ Better Students
+            </p>
+
+            <p>
+                Bigger Dreams
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================
+         MAIN CONTENT
+         ================================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search for events, resources, teams..."
+                >
+
+            </div>
+
+
+            <a href="/profile"
+               class="student-profile">
+
+                🔔
+
+                <div class="profile-avatar">
+                    👨‍🎓
+                </div>
+
+                <div>
+
+                    <small>
+                        Welcome Back!
+                    </small>
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                </div>
+
+                <span>
+                    ⌄
+                </span>
+
+            </a>
+
+        </header>
+
+
+
+        <!-- =================================
+             HERO
+             ================================= -->
+
+        <section class="hero-dashboard">
+
+            <div class="hero-content">
+
+                <p class="hello">
+                    🤖 Your Campus Helper
+                </p>
+
+                <h1>
+
+                    Campus
+                    <span>Assistant</span>
+
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    Ask questions and quickly find
+                    useful campus information.
+
+                </p>
+
+                <div class="hero-tagline">
+
+                    Ask
+                    <span>•</span>
+                    Learn
+                    <span>•</span>
+                    Get Help
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+
+                🤖
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             ASK ASSISTANT
+             ================================= -->
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    💬 Ask Campus Mate
+                </h2>
+
+                <p>
+                    Ask a question about campus
+                </p>
+
+            </div>
+
+
+            <div class="assistant-form-card">
+
+                <form
+                    method="POST"
+                    action="/ask"
+                    class="assistant-form"
+                >
+
+                    <input
+                        type="text"
+                        name="question"
+                        class="assistant-input"
+                        placeholder="Example: What are the library timings?"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="assistant-button"
+                    >
+
+                        🤖 Ask Campus Mate
+
+                    </button>
+
+                </form>
+
+
+                <div class="assistant-tip">
+
+                    💡 Try asking about
+                    <strong>library</strong>,
+                    <strong>timings</strong>,
+                    <strong>clubs</strong>
+                    or
+                    <strong>help</strong>.
+
+                </div>
+
+
+                {% if answer %}
+
+                <div class="assistant-answer">
+
+                    <div class="assistant-answer-icon">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Campus Mate says:
+                        </h3>
+
+                        <p>
+                            {{ answer }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             QUICK QUESTIONS
+             ================================= -->
+
+        <section class="features-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    ⚡ Common Questions
+                </h2>
+
+                <p>
+                    Topics you can ask about
+                </p>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+
+                <!-- TIMINGS -->
+
+                <div class="feature-card card-purple">
+
+                    <div class="feature-icon">
+                        🕐
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>
+                            College Timings
+                        </h3>
+
+                        <p>
+                            Ask about college working
+                            hours and timings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LIBRARY -->
+
+                <div class="feature-card card-blue">
+
+                    <div class="feature-icon">
+                        📚
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>
+                            Library
+                        </h3>
+
+                        <p>
+                            Ask about library information
+                            and availability.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CLUBS -->
+
+                <div class="feature-card card-green">
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>
+                            College Clubs
+                        </h3>
+
+                        <p>
+                            Ask how to find or join
+                            college clubs.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HELP -->
+
+                <div class="feature-card card-orange">
+
+                    <div class="feature-icon">
+                        ❓
+                    </div>
+
+                    <div class="feature-text">
+
+                        <h3>
+                            Need Help?
+                        </h3>
+
+                        <p>
+                            Ask common questions about
+                            campus life.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             FOOTER
+             ================================= -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+
+                🤖 Ask anything about campus
+
+                <br>
+
+                <span>
+                    Campus Mate is here to help.
+                </span>
+
+            </div>
+
+
+            <div class="footer-brand">
+
+                🏫
+
+                <strong>
+                    Campus Mate
+                </strong>
+
+                <small>
+                    Built by Code Crafters.
+                </small>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+</body>
+
+</html>
