@@ -2736,12 +2736,19 @@ def batch_chat_room(batch):
 
 
 # =========================================================
+# INITIALIZE DATABASE
+# =========================================================
+
+# This must run when Flask starts,
+# including when deployed with Gunicorn on Render.
+init_db()
+
+
+# =========================================================
 # START APP
 # =========================================================
 
 if __name__ == "__main__":
-
-    init_db()
 
     app.run(
         host="0.0.0.0",
